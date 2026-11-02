@@ -36,7 +36,7 @@ menu entry has a page, and every `#heading` in a link exists.
   `<guide>/01-name.md` pages.
 - Add every new page to `navigation` in `docs/docs.json`, without `.md`
   (`"7-maintain/write-the-docs"`).
-- Link with relative paths to `.md` files, as in any Markdown: `[commands](../8-reference/commands.md)`.
+- Link with relative paths to `.md` files, as in any Markdown: `[commands](../8-reference/project/commands.md)`.
 - Explain each job in one place and link to it from the others.
 
 Pages are MDX: Markdown that can also hold components. Two characters therefore mean something

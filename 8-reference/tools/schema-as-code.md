@@ -2,10 +2,10 @@
 
 > **Reference.** The Schema as Code XrmToolBox tool, version 0.1.0: it creates and updates the
 > tables, columns, choices, status reasons, relationships and keys of
-> [`dist/schema.json`](../configuration.md#distschemajson) in a development environment, instead
+> [`dist/schema.json`](../project/configuration.md#distschemajson) in a development environment, instead
 > of making them by hand in the maker portal. How to write the schema:
 > [Define the schema](../../4-build/define-the-schema.md); every builder:
-> [Schema DSL](../schema-dsl.md).
+> [Schema DSL](../schema/schema-dsl.md).
 
 ## What you pick
 
@@ -93,5 +93,5 @@ F5 reads `schema.json` and the environment again; F1 opens the help.
 
 ## Install
 
-`tools\xrmtoolbox\install.cmd` ([XrmToolBox tools](../tools.md#install-or-update-them)); the zip
+`tools\xrmtoolbox\install.cmd` ([XrmToolBox tools](overview.md#install-or-update-them)); the zip
 holds `SchemaAsCode.dll`.

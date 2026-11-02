@@ -1,8 +1,8 @@
 # Schema DSL
 
 > **Reference.** Every builder of `@schema-dsl` (`src/schema-dsl/`) and its options. How to use them:
-> [Define the schema in code](../4-build/define-the-schema.md). The file they produce:
-> [dist/schema.json](configuration.md#distschemajson).
+> [Define the schema in code](../../4-build/define-the-schema.md). The file they produce:
+> [dist/schema.json](../project/configuration.md#distschemajson).
 
 Every label is `{ en, fr }`; both are required. Every column takes `display` and `description` plus
 the options of its kind.

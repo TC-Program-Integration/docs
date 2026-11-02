@@ -96,4 +96,4 @@ useEffect(() => {
 }, [dependencies]);
 ```
 
-**Next:** [Install and sign in](../2-set-up/01-install.md) · [Build a feature](../4-build/build-a-feature.md) · [UI components](../8-reference/ui-components.md)
+**Next:** [Install and sign in](../2-set-up/01-install.md) · [Build a feature](../4-build/build-a-feature.md) · [UI components](../8-reference/web-resources/ui-components.md)

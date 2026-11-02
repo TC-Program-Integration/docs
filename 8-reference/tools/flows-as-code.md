@@ -24,7 +24,7 @@
 | right-click > **Remove from this solution** | removes the flow from the loaded solution only; the flow stays in its other solutions (below) |
 | **Settings** | **Build command...**, **Build folder...** (used when the links file has no `buildCommand`), **Editor command...**, **Compare tool...**, **Forget environment answers** |
 
-The links go in [`flows.links.json`](../configuration.md#flowslinksjson), with paths relative to
+The links go in [`flows.links.json`](../project/configuration.md#flowslinksjson), with paths relative to
 it, so the team commits it. `pnpm flows:build` adds the flows it builds to the file; a flow you link
 by hand (right-click > **Link to an existing file...**) keeps its own entry. Flow ids are the same in every environment the solution is imported to,
 so one folder works for dev and test. Paths in the file can only point inside the folder.
@@ -75,7 +75,7 @@ sequenceDiagram
 - **Build first**: the `buildCommand` of `flows.links.json` runs in the links file's folder before
   each push, once you allow it (and again whenever it changes). A failed build stops the push.
 - **Checks**: valid JSON, a trigger, `runAfter` naming actions of the same block, every connection
-  declared in `connectionReferences`. `pnpm flows:build` checks much more ([flowkit checks](../flowkit.md#checks)).
+  declared in `connectionReferences`. `pnpm flows:build` checks much more ([flowkit checks](../flows/flowkit.md#checks)).
 - **Off, update, on**: a flow that is on is turned off, updated, then turned back on (Dataverse does
   not accept a new definition for a flow that is on). A flow that is off is updated and stays off.
   If an update is refused, a flow that was on is turned back on with its previous definition. If
@@ -198,5 +198,5 @@ Ctrl+F searches the flows by name, F5 reloads (on the Runs tab: reads the runs),
 
 ## Install
 
-`tools\xrmtoolbox\install.cmd` ([XrmToolBox tools](../tools.md#install-or-update-them)); the zip
+`tools\xrmtoolbox\install.cmd` ([XrmToolBox tools](overview.md#install-or-update-them)); the zip
 holds `FlowsAsCode.dll`.

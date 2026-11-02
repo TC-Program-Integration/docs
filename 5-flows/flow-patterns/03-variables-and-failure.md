@@ -112,7 +112,7 @@ flow = Flow(
   *Succeeded* even though the try failed. Decide which you want.
 - Several independent steps where one failure must not stop the others (a loop of writes): use
   `catch(action, into, context)` per step and `terminate_with_list` at the end
-  ([flowkit](../../8-reference/flowkit.md#error-handling)). Use `try_catch` for "this whole part".
+  ([flowkit](../../8-reference/flows/flowkit.md#error-handling)). Use `try_catch` for "this whole part".
 - A **Terminate** ends the whole run at once, whatever scope it is in; nothing after it runs, including a catch.
 - For other statuses use `when(name, "Failed", "Skipped", "TimedOut")` as an action's `after`;
   `when(name)` with no status means "whatever happened".

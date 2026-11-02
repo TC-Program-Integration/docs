@@ -119,9 +119,9 @@ they are `undefined` the select is disabled and says "Loading...". Copy `SelectF
 the `choice` builder in `form/specs.ts` as the starting point.
 
 Then run the checks in [the steps](../add-a-ui-component.md#the-steps) and add a row to
-[UI components](../../8-reference/ui-components.md).
+[UI components](../../8-reference/web-resources/ui-components.md).
 
-**Next:** [Build a feature](../build-a-feature.md) · [UI components reference](../../8-reference/ui-components.md)
+**Next:** [Build a feature](../build-a-feature.md) · [UI components reference](../../8-reference/web-resources/ui-components.md)
 
 ---
 

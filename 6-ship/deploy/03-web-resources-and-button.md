@@ -82,7 +82,7 @@ the button to `dist/deploy.json`.
    solution. All three are remembered.
 3. The button shows *Missing*. Other states: *Web resource missing* (create the web resources
    first), *Table missing*, *Problem in deploy.json*, *Blocked* (another app's command uses that
-   name) ([all states](../../8-reference/tools.md#command-buttons-deployjson)).
+   name) ([all states](../../8-reference/tools/overview.md#command-buttons-deployjson)).
 4. **Publish selected**. It shows what it will write, creates the button in your solution and
    publishes the app.
 

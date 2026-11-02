@@ -2,7 +2,7 @@
 
 > **Reference.** Every helper in `flows/lib/flowkit/` ([where each one lives](flowkit-layout.md)). A flow file, `flows/<name>/flow.py`, imports
 > what it uses (`from lib.flowkit import Flow, chain, recurrence`) and defines `flow = Flow(...)`.
-> How to write one: [Build a flow](../5-flows/build-a-flow.md).
+> How to write one: [Build a flow](../../5-flows/build-a-flow.md).
 
 The solution's XML is in `flows/templates/*.xml` (filled with `${placeholders}`), not in Python;
 edit those files to change what the package contains.
@@ -105,7 +105,7 @@ use the connector id without `shared_`.
 | `response(status_code=200, body=None, headers=None)` | Response to an `http_request_trigger` flow |
 | `respond_to_powerapp(outputs, types=None)` | Respond to a Power App or flow; `outputs` is `{name: value}`, `types` the type of each (default string). Its JSON shape is from a community example, not Microsoft's reference: check it with Peek code. |
 
-These are explained, with whole flows, in [Flow patterns](../5-flows/flow-patterns.md).
+These are explained, with whole flows, in [Flow patterns](../../5-flows/flow-patterns.md).
 
 ## Options and conditions
 
@@ -157,7 +157,7 @@ a mistake Power Automate would only report at save or run time:
 
 Expressions are every string that starts with `@` (not `@@`) and every `@{...}` inside a string.
 The known functions are in `flows/lib/flowkit/check/functions.py`; if Power Automate adds one, add it
-there. How to fix each problem: [Build a flow](../5-flows/build-a-flow.md#3-build-and-check).
+there. How to fix each problem: [Build a flow](../../5-flows/build-a-flow.md#3-build-and-check).
 
 ## Environment variables
 
@@ -181,12 +181,12 @@ The flow's `parameters` gets one entry per variable, next to `$connections` and 
 `String`, `Int` (Number), `Bool` (Boolean) or `Object` (JSON). Number, Boolean and JSON are not yet
 checked against a flow in dev. The `Solution` writes `environmentvariabledefinitions/<schema name>/environmentvariabledefinition.xml`
 and a `RootComponent` of type 380 for each variable any flow declares; the same schema name declared
-twice with other settings raises `ValueError`. How to use it: [Environment variables](../5-flows/environment-variables.md).
+twice with other settings raises `ValueError`. How to use it: [Environment variables](../../5-flows/environment-variables.md).
 
 ## Choice values
 
 The number behind a choice label, looked up at run time from the `stringmap` table by the English label. How to use
-it: [Choice values](../5-flows/choice-values.md).
+it: [Choice values](../../5-flows/choice-values.md).
 
 | Helper | Gives |
 |---|---|
@@ -214,7 +214,7 @@ prefix of 2 to 8 lowercase letters or digits, version `a.b.c.d`, distinct flow k
 flow, then writes `<out>/<key>/flow.json`, `<out>/flows.json` and `<out>/<UniqueName>_<version>.zip`
 (dots in the version become `_`): an unmanaged solution with the flows and their connection
 references. The zip is for the first import of a flow; after that the
-[Flows as Code tool](tools/flows-as-code.md) pushes `flow.json`. Options: [commands](commands.md#flows).
+[Flows as Code tool](../tools/flows-as-code.md) pushes `flow.json`. Options: [commands](../project/commands.md#flows).
 
 With several solutions, build-all calls the functions below instead. A flow can be in more than one
 solution: it is checked and written once, and each solution's zip holds its own flows.
@@ -235,5 +235,5 @@ for solution, zip_path in write_project(solutions, Path("flows/out")):
 
 Each `Solution` has `home_unique_name` and `home_prefix` (None on the home itself). A flow's id is
 derived from the home's unique name, so it is the same in every solution; the flow's JSON uses the
-home's prefix (`flow_prefix`). [One flow in several solutions](../6-ship/deploy.md#one-flow-in-several-solutions)
+home's prefix (`flow_prefix`). [One flow in several solutions](../../6-ship/deploy.md#one-flow-in-several-solutions)
 explains the rules.

@@ -57,7 +57,7 @@ Read the parts in this order the first time:
 | 6 | [Ship](6-ship/deploy.md) | dev, verify, prod, failed flow runs, releases |
 | 7 | [Maintain](7-maintain/update-the-kit.md) | taking the starter's newer kit, publishing the docs |
 
-The [reference](8-reference/commands.md) holds exact formats and options; [help](9-help/troubleshooting.md)
+The [reference](8-reference/index.md) holds exact formats and options; [help](9-help/troubleshooting.md)
 is for when you are stuck.
 
 ## I want to...
@@ -78,7 +78,7 @@ is for when you are stuck.
 | test what I wrote, and run the checks CI runs | [Test and check](4-build/test-and-check.md) |
 | add a Power Automate flow | [Build a flow](5-flows/build-a-flow.md) |
 | find the right flow block | [Flow patterns](5-flows/flow-patterns.md) |
-| write a flow expression | [Flow expressions](8-reference/flow-expressions.md) |
+| write a flow expression | [Flow expressions](8-reference/flows/flow-expressions.md) |
 | deploy for the first time | [Deploy your first solution](6-ship/deploy/01-first-time.md) |
 | put my work in dev and prod | [Deploy](6-ship/deploy.md) |
 | check that dev has what I built | [Deploy: verify](6-ship/deploy.md#5-verify) |
@@ -87,15 +87,15 @@ is for when you are stuck.
 | hand the project over as a checked zip | [Make a release](6-ship/release.md) |
 | take the starter's newer tools into my project | [Update the kit](7-maintain/update-the-kit.md) |
 | read the docs as a website, or change them | [Write the docs](7-maintain/write-the-docs.md) |
-| find a command, option or environment variable | [Commands](8-reference/commands.md) |
-| know what a config file holds | [Configuration](8-reference/configuration.md) |
-| know what each XrmToolBox tool reads from the project | [XrmToolBox tools](8-reference/tools.md) |
-| use a core function or a form component | [Core API](8-reference/core-api.md), [UI components](8-reference/ui-components.md), [lists, tables, charts, dialogs and tabs](8-reference/ui-components-data.md) |
-| know what goes in config.ts, schema.ts, ... | [Feature files](8-reference/feature-files.md) |
-| change mock data or use the test helpers | [Mock Dataverse](8-reference/mock-dataverse.md) |
-| use a flowkit helper | [flowkit](8-reference/flowkit.md) |
-| check the rules before a review | [Conventions](8-reference/conventions.md) |
-| understand a word | [Glossary](8-reference/glossary.md) |
+| find a command, option or environment variable | [Commands](8-reference/project/commands.md) |
+| know what a config file holds | [Configuration](8-reference/project/configuration.md) |
+| know what each XrmToolBox tool reads from the project | [XrmToolBox tools](8-reference/tools/overview.md) |
+| use a core function or a form component | [Core API](8-reference/web-resources/core-api.md), [UI components](8-reference/web-resources/ui-components.md), [lists, tables, charts, dialogs and tabs](8-reference/web-resources/ui-components-data.md) |
+| know what goes in config.ts, schema.ts, ... | [Feature files](8-reference/web-resources/feature-files.md) |
+| change mock data or use the test helpers | [Mock Dataverse](8-reference/web-resources/mock-dataverse.md) |
+| use a flowkit helper | [flowkit](8-reference/flows/flowkit.md) |
+| check the rules before a review | [Conventions](8-reference/project/conventions.md) |
+| understand a word | [Glossary](8-reference/project/glossary.md) |
 | fix an error | [Troubleshooting](9-help/troubleshooting.md) |
 | know what access I need and what not to do | [Access and security](9-help/access-and-security.md) |
 

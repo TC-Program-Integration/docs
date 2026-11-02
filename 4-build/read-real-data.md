@@ -106,12 +106,12 @@ emails, phone numbers and anything else personal with made-up values.
 
 `dv:pull` does not read relationships: the navigation property of a lookup (for `@odata.bind`)
 and N:N relationship names come from Power Apps, table > **Relationships**. The mock data format
-is in [Mock Dataverse](../8-reference/mock-dataverse.md#data-file-format).
+is in [Mock Dataverse](../8-reference/web-resources/mock-dataverse.md#data-file-format).
 
 ## 3. Keep checking with pnpm test:dataverse
 
 Each feature's `schema.ts` lists the tables, columns, choice values, records and N:N
-relationships it relies on ([format](../8-reference/feature-files.md#schemats)).
+relationships it relies on ([format](../8-reference/web-resources/feature-files.md#schemats)).
 `pnpm test:dataverse` checks every one of them against the environment:
 
 ```powershell

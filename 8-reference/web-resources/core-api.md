@@ -121,6 +121,6 @@ which `mountPage` always mounts.
 use `openStandaloneLookup(options)` to request a single-record selection from the React lookup
 host installed by `mountPage`; the core contains no React components.
 
-Rules in [conventions](conventions.md#the-core): no project table names, a doc comment saying
+Rules in [conventions](../project/conventions.md#the-core): no project table names, a doc comment saying
 when to use it, a unit test, exported from `index.ts`, and a line on this page.
 The core knows nothing about React or the DOM; the form components are in [UI components](ui-components.md).

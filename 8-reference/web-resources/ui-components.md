@@ -5,7 +5,7 @@ sidebarTitle: "UI components"
 # UI components (`src/ui`)
 
 > **Reference.** The React kit: fields, layout, save bar, feedback. Lists, tables, charts, dialogs and tabs: [next page](ui-components-data.md).
-> Import from `"@ui"` (an [alias](configuration.md#import-aliases)). Tests in `test/unit/ui/`.
+> Import from `"@ui"` (an [alias](../project/configuration.md#import-aliases)). Tests in `test/unit/ui/`.
 
 Function components, hooks and a few plain helpers. A page declares its fields as data, draws
 them by name, and gets the same labels, required markers, error messages, accessibility wiring,
@@ -30,7 +30,7 @@ const fieldSpecs = {
 </FormContext.Provider>
 ```
 
-[Build a feature: a worked example](../4-build/build-a-feature/01-scaffold-and-config.md) shows a whole page, and
+[Build a feature: a worked example](../../4-build/build-a-feature/01-scaffold-and-config.md) shows a whole page, and
 `src/features/quick-task/page/QuickTaskPage.tsx` is a complete small one.
 
 ## Field specs
@@ -200,7 +200,7 @@ model-driven app's Fluent look; set them in `page.css` to restyle one page.
 ## Adding a component
 
 A step-by-step guide with two worked examples (a display component and a field) is
-[Add a UI component](../4-build/add-a-ui-component.md). In short:
+[Add a UI component](../../4-build/add-a-ui-component.md). In short:
 
 1. A folder `src/ui/<name>/` with `<Name>.tsx` and, if it needs styles, `<name>.css`.
 2. Build a labelled input inside `FieldShell` and `controlA11y`.

@@ -146,12 +146,12 @@ where they may be kept, and do not share them. The tool shows this notice each t
   password is asked, and it talks only to the connected organization.
 - It never deletes anything; it only sets the manager.
 
-More on the shared rules: [XrmToolBox tools](../tools.md#safety-rules-they-share).
+More on the shared rules: [XrmToolBox tools](overview.md#safety-rules-they-share).
 
 ## Install
 
 Unlike the other three tools, this one is not in
-[`tools/xrmtoolbox/tools.json`](../configuration.md#toolsxrmtoolboxtoolsjson), so `install.cmd` does
+[`tools/xrmtoolbox/tools.json`](../project/configuration.md#toolsxrmtoolboxtoolsjson), so `install.cmd` does
 not fetch it. Close XrmToolBox, then copy `OrgChartManagerSync.dll` into its Plugins folder
 ([find it](../../2-set-up/01-install/02-xrmtoolbox-tools.md#1-find-the-plugins-folder)), unblock it
 (`Unblock-File`), and start XrmToolBox. It shows as **OrgChart Manager Sync** in the **Tools** list.

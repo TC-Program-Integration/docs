@@ -2,7 +2,7 @@
 
 > **For:** a flow that reads or writes a choice column (a status, a type, a category) and must not depend on its numbers.
 > **Result:** a flow that looks each number up at run time by its English label, fails with a clear message when a
-> label is missing, and reads the numbers from the lookup. The reference is in [flowkit](../8-reference/flowkit.md#choice-values).
+> label is missing, and reads the numbers from the lookup. The reference is in [flowkit](../8-reference/flows/flowkit.md#choice-values).
 
 A choice column stores a number and shows a label. The numbers are set when the option is created, so they can
 differ between environments. A flow that writes `2` for "Inactive" works in one environment and writes the wrong
@@ -79,4 +79,4 @@ flow's body: a condition after the lookup, with a Terminate Succeeded to stop ea
 
 ---
 
-**Back to:** [Build a flow](build-a-flow.md) · [flowkit reference](../8-reference/flowkit.md#choice-values)
+**Back to:** [Build a flow](build-a-flow.md) · [flowkit reference](../8-reference/flows/flowkit.md#choice-values)

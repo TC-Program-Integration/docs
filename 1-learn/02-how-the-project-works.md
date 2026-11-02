@@ -4,7 +4,7 @@
 > **Result:** you know what the parts are, why they are split this way, and what each tool is for.
 
 Step-by-step tasks are in the guides ([build a feature](../4-build/build-a-feature.md)); exact
-formats and options are in the [reference](../8-reference/commands.md).
+formats and options are in the [reference](../8-reference/project/commands.md).
 
 ## What a project produces
 
@@ -57,7 +57,7 @@ moves down into the core or the UI kit.
 | `page/` | the dialog: `index.tsx` (mounts React), `<Name>Page.tsx` (layout and state), `fields.ts` (the fields as data), `page.html`, `page.css` |
 | `logic/` | validation and business rules as pure functions (no React, no DOM, no Xrm) |
 
-Details: [feature files](../8-reference/feature-files.md). What React can and cannot do here:
+Details: [feature files](../8-reference/web-resources/feature-files.md). What React can and cannot do here:
 [React in a web resource](03-react-in-web-resources.md).
 
 ## What happens at run time
@@ -102,7 +102,7 @@ saving it. One fake serves the preview (`pnpm dv:preview`, on `tools/preview/moc
 edit freely), the unit tests and the browser tests (both on `test/fixtures/mock-data.json`,
 fixed). A page that works in the preview behaves the same in the tests. The mock does not simulate
 security roles, plugins, business rules or full query semantics:
-[mock Dataverse](../8-reference/mock-dataverse.md).
+[mock Dataverse](../8-reference/web-resources/mock-dataverse.md).
 
 ## Names, and flows as code
 
@@ -145,7 +145,7 @@ twice:
 | `flows/out/<key>/flow.json`, `flows/out/flows.json` | `pnpm flows:build` | Flows as Code (the flows to push), `pnpm dv:verify` |
 
 **XrmToolBox tools** push to dev and test only, and refuse production
-([XrmToolBox tools](../8-reference/tools.md)):
+([XrmToolBox tools](../8-reference/tools/overview.md)):
 
 | Tool | Exists because |
 |---|---|
@@ -164,7 +164,7 @@ twice:
 | `pnpm test:dataverse` | does Dataverse still have every table and column each `schema.ts` lists? |
 
 The offline tests prove the code agrees with the mock; these prove the mock agrees with Dataverse.
-Every command and option: [commands](../8-reference/commands.md).
+Every command and option: [commands](../8-reference/project/commands.md).
 
 ## Access
 

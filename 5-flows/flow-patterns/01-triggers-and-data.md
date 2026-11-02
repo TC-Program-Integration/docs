@@ -20,7 +20,7 @@ A flow has exactly one trigger. It decides **when a run starts** and what the fi
 | `sharepoint_trigger(site, list_id, message)`, `outlook_trigger(folder)` | a SharePoint item is created or modified, an email arrives ([example](05-connectors.md#helpers-for-common-connectors)) | `@triggerOutputs()?['body/<column>']` |
 
 `trigger_options(trigger, conditions=..., split_on=..., concurrency=...)` adds start conditions to any of them
-([flowkit options](../../8-reference/flowkit-options.md#trigger-options)).
+([flowkit options](../../8-reference/flows/flowkit-options.md#trigger-options)).
 
 **A schedule.** `time_zone` takes Windows time zone names (`"Romance Standard Time"`, `"Pacific Standard Time"`);
 the default is Eastern. `hours` and `minutes` pin the time of a daily or weekly run.
@@ -112,7 +112,7 @@ What to remember when reading:
 - **Related rows**: `$expand` reads them in the same call (`owninguser($select=fullname)` above), so you do
   not need one `GetItem` per row. A lookup you already hold the id of is a `GetItem`.
 - **A text value in a filter** is quoted, and a quote inside it is doubled: use
-  `odata_quote(expression)` ([flowkit](../../8-reference/flowkit.md#expressions)).
+  `odata_quote(expression)` ([flowkit](../../8-reference/flows/flowkit.md#expressions)).
 - **A date in a filter** is an ISO text without quotes: `scheduledend lt @{utcNow()}`.
 - **More than one page of rows**: a list returns up to 5000 rows. To read all of a larger table,
   switch on pagination, which the helper does not set: pass it on the action itself.
@@ -140,7 +140,7 @@ SharePoint lists are read with `sharepoint_items(site, list_id)`, which already 
 | `DeleteRecord` | `entityName`, `recordId` |
 
 `add_row`, `update_row`, `delete_row` and `list_rows` write these actions for you
-([flowkit](../../8-reference/flowkit.md#connector-actions)); `update_row` is `UpdateOnlyRecord`.
+([flowkit](../../8-reference/flows/flowkit.md#connector-actions)); `update_row` is `UpdateOnlyRecord`.
 
 ```python
 from lib.flowkit import Flow, chain, dataverse, dataverse_trigger

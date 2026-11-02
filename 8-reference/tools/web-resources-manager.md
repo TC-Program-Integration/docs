@@ -4,7 +4,7 @@
 > uses. Steps in order: [Web resources and button](../../6-ship/deploy/03-web-resources-and-button.md).
 > Its **Help** tab covers everything else.
 
-It reads [`webresources.links.xml`](../configuration.md#webresourceslinksxml), which `pnpm build`
+It reads [`webresources.links.xml`](../project/configuration.md#webresourceslinksxml), which `pnpm build`
 writes at the root of the project.
 
 ## Open web resources
@@ -139,6 +139,6 @@ write outside their folder, and SVGs that declare a DOCTYPE are not previewed.
 
 ## Install
 
-`tools\xrmtoolbox\install.cmd` ([XrmToolBox tools](../tools.md#install-or-update-them)). The zip
+`tools\xrmtoolbox\install.cmd` ([XrmToolBox tools](overview.md#install-or-update-them)). The zip
 holds `MscrmTools.WebresourcesManager.dll` and the libraries it needs (`Fizzler.dll`,
 `Yahoo.Yui.Compressor.dll`, `Svg.dll`, `EcmaScript.NET.dll`).

@@ -102,11 +102,11 @@ history. Use a connection or an environment variable, and secure inputs and outp
 | a Power Apps button | `manual_trigger` takes its inputs (`string`, `number`, `boolean`); the app calls the flow from its own formulas, and the flow can answer with `respond_to_powerapp(...)` |
 
 The helpers that do exist (triggers for SharePoint and Outlook, Outlook, Teams and Office 365 Users actions, Dataverse
-rows, condition builders, retry and other options) are in the [flowkit reference](../../8-reference/flowkit.md).
+rows, condition builders, retry and other options) are in the [flowkit reference](../../8-reference/flows/flowkit.md).
 
 When you add a helper to `flows/lib/flowkit/` for something your team uses often, give it a test in
 the matching folder of `flows/tests/` (`actions/`, `connectors/` or `triggers/`) and a row in the
-[flowkit reference](../../8-reference/flowkit.md). The layout is in [flowkit layout](../../8-reference/flowkit-layout.md).
+[flowkit reference](../../8-reference/flows/flowkit.md). The layout is in [flowkit layout](../../8-reference/flows/flowkit-layout.md).
 
 ---
 

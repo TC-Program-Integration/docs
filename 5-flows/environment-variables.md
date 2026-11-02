@@ -2,7 +2,7 @@
 
 > **For:** a flow value that differs between dev, test and prod: a mailbox, a web address, a limit.
 > **Result:** a flow that reads the value through a parameter, a solution that creates the variable on
-> import, and a value set in each environment. The reference is in [flowkit](../8-reference/flowkit.md#environment-variables).
+> import, and a value set in each environment. The reference is in [flowkit](../8-reference/flows/flowkit.md#environment-variables).
 
 A Dataverse environment variable is a named setting in the solution. A flow reads it through a
 parameter, so the flow's code stays the same in every environment and only the value changes.
@@ -89,4 +89,4 @@ environment's import steps ([Deploy](../6-ship/deploy.md)).
 
 ---
 
-**Back to:** [Build a flow](build-a-flow.md) · [flowkit reference](../8-reference/flowkit.md#environment-variables)
+**Back to:** [Build a flow](build-a-flow.md) · [flowkit reference](../8-reference/flows/flowkit.md#environment-variables)

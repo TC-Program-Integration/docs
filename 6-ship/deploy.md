@@ -29,7 +29,7 @@ flowchart TB
 |---|---|
 | pac is signed in to **dev** | `pac org who` ([install and sign in](../2-set-up/01-install.md)) |
 | You can work there | `pnpm dv:access`: you exist, are enabled, have System Customizer, and the project's publisher and solution exist |
-| The XrmToolBox tools are installed | `tools\xrmtoolbox\install.cmd` ([XrmToolBox tools](../8-reference/tools.md)) |
+| The XrmToolBox tools are installed | `tools\xrmtoolbox\install.cmd` ([XrmToolBox tools](../8-reference/tools/overview.md)) |
 | The code is ready | `pnpm check` passes (the git hooks and CI run it too) |
 
 `pnpm dv:access new.student@example.com` checks someone else (it needs read access to users and
@@ -78,7 +78,7 @@ Describe each button in `webresources.config.mjs` (`buttons`) and build. In XrmT
 **Command Buttons**, pick the project folder, the app and the solution, check the state of each
 button (*Missing*, *Up to date*, *Different*...), then **Publish selected**. It creates or updates
 the buttons and publishes the app; it never deletes one
-([states and settings](../8-reference/tools.md#command-buttons-deployjson)).
+([states and settings](../8-reference/tools/overview.md#command-buttons-deployjson)).
 
 A button only changes when its label, table or entry point changes. Most deploys skip this step.
 
@@ -108,7 +108,7 @@ the flow is one workflow, with one id, in each solution that holds it.
   or moving the flow to another home, would create a new flow. build-all stops and names the
   solutions.
 - **Membership in the file.** List a flow's folder in the `flows` of each solution that should hold
-  it, in `flows/solution.json` ([configuration](../8-reference/configuration.md#flowssolutionjson)),
+  it, in `flows/solution.json` ([configuration](../8-reference/project/configuration.md#flowssolutionjson)),
   then run `pnpm flows:build`. Build one solution with
   `uv run python flows/build-all.py --only-solution <uniquename>`.
 - **In the environment.** The file only shapes the zips. To change which solutions hold a flow in

@@ -13,10 +13,10 @@ pnpm.
 | `setup.cmd` | One-time laptop setup. Installs only what is missing (Scoop, PowerShell 7, Git, gh, Node, pnpm, uv, Python, pac, XrmToolBox), then the packages and the Python tools, Ollama and the docs' AI chat model, team XrmToolBox plugins, then runs the offline tests. Safe to run again: what works is left alone. Starts `setup.ps1` with the execution policy bypassed for that window only, explains each failure, and writes `setup.log`. | Windows |
 | `pnpm xrm` | launches XrmToolBox after checking for and updating the team's plugins | Windows |
 | `setup.cmd -SkipBrowser` | the same, without downloading Chromium; Edge runs the browser tests | Windows |
-| `setup.cmd -SkipDocsChat` | the same, without Ollama and the AI chat model ([Ask the docs](../2-set-up/03-ask-the-docs.md)) | Windows |
+| `setup.cmd -SkipDocsChat` | the same, without Ollama and the AI chat model ([Ask the docs](../../2-set-up/03-ask-the-docs.md)) | Windows |
 | `setup.cmd -Clean` | when Node or pnpm are mixed up (not Node 24, pnpm does not run, nvm blocking tools), clears nvm and scoop's Node and pnpm without asking, then installs Node 24 and pnpm with scoop. Without `-Clean`, setup lists the problems and asks first. | Windows |
 | `setup.cmd -Doctor` | checks the laptop and the project without installing or changing anything; writes `doctor-report.txt` to send to whoever helps you | Windows |
-| `tools\xrmtoolbox\install.cmd [-Force] [-Zip <zip>] [-PluginsFolder <dir>]` | installs or updates the team's [XrmToolBox tools](tools.md#install-or-update-them). Close XrmToolBox first. | Windows |
+| `tools\xrmtoolbox\install.cmd [-Force] [-Zip <zip>] [-PluginsFolder <dir>]` | installs or updates the team's [XrmToolBox tools](../tools/overview.md#install-or-update-them). Close XrmToolBox first. | Windows |
 | `pnpm install` | installs the packages and the git hooks (`prepare`) | |
 | `uv sync` | creates `.venv` with the Python tools from `pyproject.toml` and `uv.lock`: Black, Ruff and Pyright for `flows/` | uv |
 
@@ -28,11 +28,11 @@ pnpm.
 | `pnpm dev` | starts together, in one terminal: the preview (`http://localhost:5600`) and the docs website (`http://localhost:5173`). Each output line is marked with its name. Ctrl+C stops both. Run the unit tests with `pnpm test` (or `pnpm test:watch` in its own terminal). | uv |
 | `pnpm dv:preview [feature] [--port <n>] [--data <file>]` | the preview alone: every feature on mock data, rebuilt and reloaded on save; `/?feature=<name>` switches. Default port 5600, default data `tools/preview/mock-data.json`. Writes are logged, never sent. | |
 | `pnpm watch` | rebuilds `dist/` on save, without format, lint or type checks | |
-| `pnpm first-feature:check [name]` | checks the [first-feature exercise](../3-first-feature/first-feature.md): the files are your own work, then format, lint, types, tests with coverage, the feature's browser test, the flow checks, `flows:build` and the build pass. Prints `READY` or what is left. Default name `callback-request`. | Edge, uv |
+| `pnpm first-feature:check [name]` | checks the [first-feature exercise](../../3-first-feature/first-feature.md): the files are your own work, then format, lint, types, tests with coverage, the feature's browser test, the flow checks, `flows:build` and the build pass. Prints `READY` or what is left. Default name `callback-request`. | Edge, uv |
 
 ## Schema
 
-Tables, columns, choices, relationships and keys written in TypeScript: [Define the schema](../4-build/define-the-schema.md).
+Tables, columns, choices, relationships and keys written in TypeScript: [Define the schema](../../4-build/define-the-schema.md).
 
 | Command | Does | Needs |
 |---|---|---|
@@ -56,14 +56,14 @@ Tables, columns, choices, relationships and keys written in TypeScript: [Define 
 | `pnpm test:coverage` | unit tests with V8 coverage; fails below the floor in `vitest.config.mts`; report in `test/.coverage/` | |
 | `pnpm test:e2e` | browser tests (`test/e2e/`) on a preview with `test/fixtures/mock-data.json`, port 5655 | Edge |
 | `pnpm check:all` | `check` and the browser tests (`test:e2e`): everything CI runs | Edge, uv |
-| `pnpm docs:serve` / `pnpm docs:build` | these docs as a website at `http://localhost:5173` / built into `site/`, failing on a page that does not parse or a broken link ([Write the docs](../7-maintain/write-the-docs.md)) | |
-| `pnpm docs:webresources` | the docs built as Dataverse web resources into `pages-site/dist-docs/`, with `webresources.docs.links.xml`, without the AI chat ([Publish the docs](../7-maintain/publish-the-docs.md)) | |
+| `pnpm docs:serve` / `pnpm docs:build` | these docs as a website at `http://localhost:5173` / built into `site/`, failing on a page that does not parse or a broken link ([Write the docs](../../7-maintain/write-the-docs.md)) | |
+| `pnpm docs:webresources` | the docs built as Dataverse web resources into `pages-site/dist-docs/`, with `webresources.docs.links.xml`, without the AI chat ([Publish the docs](../../7-maintain/publish-the-docs.md)) | |
 | `pnpm docs:pages` / `pnpm docs:pages:upload` | the same pages prerendered into `pages-site/` (what `docs:webresources` builds on); `docs:pages:upload` uploads them to a Power Pages code site with `pac pages upload-code-site`, if your org has one | pac |
-| `pnpm docs:model` | makes the AI chat's model, `holocron-docs`, from `qwen3.5:2b` ([Ask the docs](../2-set-up/03-ask-the-docs.md)) | Ollama |
+| `pnpm docs:model` | makes the AI chat's model, `holocron-docs`, from `qwen3.5:2b` ([Ask the docs](../../2-set-up/03-ask-the-docs.md)) | Ollama |
 
 Git hooks (installed by `pnpm install`): **pre-commit** runs ESLint `--fix` and Prettier on the
 staged web files, Black and Ruff `--fix` on staged Python; **pre-push** runs `pnpm check`. The
-checks are explained in [The checks](../4-build/test-and-check/02-the-checks.md).
+checks are explained in [The checks](../../4-build/test-and-check/02-the-checks.md).
 
 ## Build
 
@@ -75,7 +75,7 @@ checks are explained in [The checks](../4-build/test-and-check/02-the-checks.md)
 ## Dataverse (pac, read-only)
 
 These run FetchXML through `pac org fetch` with the pac profile you are signed in with. They only
-read and never handle a password. Rules: [access and security](../9-help/access-and-security.md).
+read and never handle a password. Rules: [access and security](../../9-help/access-and-security.md).
 `--env <url>` uses another environment than pac's active one.
 
 | Command | Does | Needs |
@@ -83,14 +83,14 @@ read and never handle a password. Rules: [access and security](../9-help/access-
 | `pnpm dv:q <file.xml \| "<fetch>…</fetch>"> [--env <url>]` | runs a query and prints the rows; also saves them to `tools/.out/last-query.txt`. A `top` attribute is turned into `count`. Ready-made queries: `tools/queries/*.xml`. | pac |
 | `pnpm dv:pull <table> --columns a,b [--records <n>] [--into <mock.json>] [--name-field <c>] [--id-field <c>] [--env <url>]` | reads the table's entity set and the options of its choice columns, prints a `config.ts` block, saves `tools/.out/pull-<table>.json`. `--records` also takes n rows (check them for personal data). `--into` adds the table and choices to that mock data file. `--id-field` defaults to `<table>id` (activities such as `task` use `activityid`). | pac |
 | `pnpm dv:access [email] [--roles "A,B"] [--env <url>]` | checks a user (default: you): exists, enabled, has the roles directly or through a team (default `System Customizer`), and the project's publisher and solution exist | pac |
-| `pnpm dv:verify [--env <url>]` | checks that every web resource and button of `dist/deploy.json` and every flow of `flows/out/flows.json` exists, and that the flows are on. Exits 1 when something is missing. Cannot see whether a web resource was published. See [Deploy: verify](../6-ship/deploy.md#5-verify). | pac |
+| `pnpm dv:verify [--env <url>]` | checks that every web resource and button of `dist/deploy.json` and every flow of `flows/out/flows.json` exists, and that the flows are on. Exits 1 when something is missing. Cannot see whether a web resource was published. See [Deploy: verify](../../6-ship/deploy.md#5-verify). | pac |
 | `pnpm test:dataverse` | checks every feature's `schema.ts` against the environment | pac |
 
 ## Flows
 
 | Command | Does | Needs |
 |---|---|---|
-| `pnpm flows:build` | runs `format:flows`, `lint:flows`, `type-check:flows`, then `flows/build-all.py`: checks every flow ([checks](flowkit.md#checks)) and writes `flows/out/<key>/flow.json` (once per flow), `flows/out/flows.json` and one `flows/out/<Solution>_<version>.zip` per solution in [`flows/solution.json`](configuration.md#flowssolutionjson), and adds the built flows to [`flows/flows.links.json`](configuration.md#flowslinksjson) (only with the default output folder). A problem stops it. | uv |
+| `pnpm flows:build` | runs `format:flows`, `lint:flows`, `type-check:flows`, then `flows/build-all.py`: checks every flow ([checks](../flows/flowkit.md#checks)) and writes `flows/out/<key>/flow.json` (once per flow), `flows/out/flows.json` and one `flows/out/<Solution>_<version>.zip` per solution in [`flows/solution.json`](configuration.md#flowssolutionjson), and adds the built flows to [`flows/flows.links.json`](configuration.md#flowslinksjson) (only with the default output folder). A problem stops it. | uv |
 | `pnpm test:flows` | flowkit and flow tests (`flows/tests/`, in folders like `flows/lib/flowkit/`, and a project's own tests next to its flows) | uv |
 | `pnpm format:flows` / `pnpm format:flows:check` | Black (width 120) formats / only checks `flows/` | uv |
 | `pnpm lint:flows` / `pnpm lint:flows --fix` | Ruff on `flows/`: imports, likely bugs, a docstring on every module, class, function and method | uv |
@@ -125,17 +125,17 @@ Example: `uv run python flows/build-all.py --only-solution MyProjectReminders`.
 
 Pushing a `v*` tag (`git push --follow-tags`) runs `.github/workflows/release.yml`: it checks the
 tag matches `package.json`, runs `pnpm release` and attaches the zip and notes to a GitHub
-Release. See [Make a release](../6-ship/release.md).
+Release. See [Make a release](../../6-ship/release.md).
 
 ## Kit
 
 | Command | Does |
 |---|---|
 | `pnpm kit:status` | which kit files you changed, and merges left to do |
-| `pnpm kit:push <starter folder> [--dry-run]` | in a project: copies the kit files you changed or added into a starter checkout, without overwriting a file the starter changed too (yours goes to `<file>.push-new`). Commits nothing. See [Send kit changes back](../7-maintain/send-kit-changes-back.md). |
-| `pnpm kit:push [<starter git url>] --pr [--dry-run]` | like `kit:push`, but puts the changes on the branch `kit-push/<project folder>` of the starter's git repo and opens a pull request (needs `starterRepo` in `kit.json`, or env `KIT_STARTER_REPO`, when no URL is given). Run it with `--dry-run` first: only files of every project belong in the kit (`exclude` the rest). [Send kit changes back](../7-maintain/send-kit-changes-back.md). |
+| `pnpm kit:push <starter folder> [--dry-run]` | in a project: copies the kit files you changed or added into a starter checkout, without overwriting a file the starter changed too (yours goes to `<file>.push-new`). Commits nothing. See [Send kit changes back](../../7-maintain/send-kit-changes-back.md). |
+| `pnpm kit:push [<starter git url>] --pr [--dry-run]` | like `kit:push`, but puts the changes on the branch `kit-push/<project folder>` of the starter's git repo and opens a pull request (needs `starterRepo` in `kit.json`, or env `KIT_STARTER_REPO`, when no URL is given). Run it with `--dry-run` first: only files of every project belong in the kit (`exclude` the rest). [Send kit changes back](../../7-maintain/send-kit-changes-back.md). |
 | `node tools/kit.mjs hook` | the `pre-push` hook, not run by hand: lists kit changes the starter lacks, and with `autopush` sends them (`"pr"`: a pull request, `true`: a local checkout). Running it by hand does the same. |
-| `pnpm kit:update <starter folder> [--dry-run] [--base <older starter folder>]` | takes the kit from a newer starter (a checkout or an unzipped release) without losing your changes. `--dry-run` shows what would happen. `--base`, first update only: the starter the project was made from. See [Update the kit](../7-maintain/update-the-kit.md). |
+| `pnpm kit:update <starter folder> [--dry-run] [--base <older starter folder>]` | takes the kit from a newer starter (a checkout or an unzipped release) without losing your changes. `--dry-run` shows what would happen. `--base`, first update only: the starter the project was made from. See [Update the kit](../../7-maintain/update-the-kit.md). |
 
 ## Environment variables
 
@@ -146,7 +146,7 @@ Release. See [Make a release](../6-ship/release.md).
 | `PW_CHANNEL` | `test:e2e` | browser channel instead of Edge (`msedge`), e.g. `chrome` |
 | `PW_EXECUTABLE_PATH` | `test:e2e` | path to any Chromium-based browser |
 | `CI` | `test:e2e` | when set, always starts a fresh preview server |
-| `KIT_STARTER_REPO`, `KIT_STARTER`, `KIT_AUTOPUSH` | `kit:push`, the `pre-push` hook | the starter's git URL, a local starter checkout, and `pr` / `1` to send on every push; override `kit.json` ([Send kit changes back](../7-maintain/send-kit-changes-back.md)) |
+| `KIT_STARTER_REPO`, `KIT_STARTER`, `KIT_AUTOPUSH` | `kit:push`, the `pre-push` hook | the starter's git URL, a local starter checkout, and `pr` / `1` to send on every push; override `kit.json` ([Send kit changes back](../../7-maintain/send-kit-changes-back.md)) |
 
 In PowerShell: `$env:DATAVERSE_URL="https://<org>.crm3.dynamics.com"; pnpm test:dataverse`.
 

@@ -75,7 +75,7 @@ Tables have the same split, plus the **entity set name** used in Web API URLs an
 "es", which gives odd plurals).
 
 The rules this repository follows for these names are in
-[conventions](../8-reference/conventions.md#dataverse-names).
+[conventions](../8-reference/project/conventions.md#dataverse-names).
 
 ## Where your code runs
 
@@ -147,6 +147,6 @@ Microsoft's docs are good once you know what to search for:
 [Client API reference](https://learn.microsoft.com/power-apps/developer/model-driven-apps/clientapi/reference),
 [Web API](https://learn.microsoft.com/power-apps/developer/data-platform/webapi/overview),
 [Power Automate expressions](https://learn.microsoft.com/azure/logic-apps/workflow-definition-language-functions-reference).
-Unfamiliar words: [glossary](../8-reference/glossary.md).
+Unfamiliar words: [glossary](../8-reference/project/glossary.md).
 
 **Next:** [How the project works](02-how-the-project-works.md)

@@ -52,7 +52,7 @@ test/e2e/site-visit.spec.ts
 ```
 
 and adds `"site-visit"` to `features` in `webresources.config.mjs`. The pieces are explained in
-[feature files](../../8-reference/feature-files.md). Check it works before changing anything:
+[feature files](../../8-reference/web-resources/feature-files.md). Check it works before changing anything:
 
 ```powershell
 pnpm test

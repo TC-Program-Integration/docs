@@ -23,7 +23,7 @@ for a task. Rewrite them for a callback request. [Write tests](../../4-build/tes
 | notes of 500 characters are accepted, 501 are not | the boundary |
 
 **The page, with the mock Dataverse** (`render`, `userEvent`): the helpers are described in
-[Mock Dataverse](../../8-reference/mock-dataverse.md).
+[Mock Dataverse](../../8-reference/web-resources/mock-dataverse.md).
 
 | Test | Proves |
 |---|---|
@@ -56,7 +56,7 @@ step. Yours:
    same number the rule uses: export it from `rules.ts` instead of writing 500 twice.
 5. `test/unit/ui/char-counter.test.tsx`: shows the length and the limit; plain at exactly the limit;
    red and "too long" one character over.
-6. Add a row for it to [UI components](../../8-reference/ui-components.md) in the documentation, as
+6. Add a row for it to [UI components](../../8-reference/web-resources/ui-components.md) in the documentation, as
    the add-a-component guide says.
 
 `pnpm lint` enforces the conventions (a doc comment on every export, no inline `style`, no HTML in

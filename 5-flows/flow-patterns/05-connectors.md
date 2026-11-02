@@ -49,7 +49,7 @@ each ([Deploy, step 4](../../6-ship/deploy/04-flow-and-try.md#4-the-flow)).
 | `sharepoint_trigger(site, list_id, message)` / `outlook_trigger(folder)` | start the flow when a SharePoint item is created or modified / an email arrives |
 | `list_rows`, `add_row`, `update_row`, `delete_row`, `perform_action` | Dataverse rows and actions, without the operation ids |
 
-All of them are in the [flowkit reference](../../8-reference/flowkit.md#connector-actions), with their arguments.
+All of them are in the [flowkit reference](../../8-reference/flows/flowkit.md#connector-actions), with their arguments.
 The example reads a new SharePoint item, finds its author's manager and emails them. The trigger starts a run only
 when the item has an author (`trigger_options`); a failed email is tried again twice (`with_options`).
 

@@ -6,8 +6,8 @@
 A feature is a folder in `src/features/<name>/`: a command-bar button that opens a React dialog
 page. The steps below are the whole path. The [worked example](#the-worked-example-site-visit)
 does every step for a real dialog, with all its code. File details are in
-[feature files](../8-reference/feature-files.md), the form components in
-[UI components](../8-reference/ui-components.md).
+[feature files](../8-reference/web-resources/feature-files.md), the form components in
+[UI components](../8-reference/web-resources/ui-components.md).
 
 ```mermaid
 flowchart LR
@@ -64,7 +64,7 @@ Before changing code, look at the table in dev ([read real data](read-real-data.
    against, records it finds by name, and N:N relationships it links through.
 3. **Mock data**: add the table and its choices to `tools/preview/mock-data.json` (the preview)
    and `test/fixtures/mock-data.json` (the tests). `pnpm dv:pull ... --into <file>` writes them
-   for you ([format](../8-reference/mock-dataverse.md#data-file-format)). Add the source table to
+   for you ([format](../8-reference/web-resources/mock-dataverse.md#data-file-format)). Add the source table to
    `sources` if the dialog opens from a table the preview does not offer yet.
 4. `pnpm test:dataverse`: dev has every table and column you named.
 
@@ -105,7 +105,7 @@ Add the button to `buttons` in `webresources.config.mjs`:
 `label` and `table` are required. `location` is `"form"` (the default) or `"grid"`; `function` is
 the exported function to run (default `open`). A list of buttons puts the same command on several
 tables. The build checks each button against the functions `command.js` really exports
-([configuration](../8-reference/configuration.md)).
+([configuration](../8-reference/project/configuration.md)).
 
 ## 7. Check it
 
@@ -157,7 +157,7 @@ first time, follow [Deploy your first solution](../6-ship/deploy/01-first-time.m
 | Saving is blocked on a field the user cannot see | the field is hidden some other way than `isVisible`; let `isVisible` decide both what is drawn and what is required |
 | The linter says "React Hook ... has a missing dependency" | add it to the dependency array (or move the code out of the effect); do not silence the rule |
 | A test warns "not wrapped in act(...)" | something changed state without being awaited; wait with `waitFor` or `findBy...` |
-| A filter returns every row in the preview | the fake supports only `eq` / `ne` joined by `and` ([mock Dataverse](../8-reference/mock-dataverse.md)) |
+| A filter returns every row in the preview | the fake supports only `eq` / `ne` joined by `and` ([mock Dataverse](../8-reference/web-resources/mock-dataverse.md)) |
 | The build warns about `buttons.<feature>` | the feature is not in `features`, `command.js` does not export that function, or `label` or `table` is missing |
 
 ## The worked example: Site visit

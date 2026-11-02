@@ -32,7 +32,7 @@ When a project has more than a handful of tables, group them by business area in
 `schema/shared/`: label helpers, existing tables, global choices, and column groups that several
 tables use.
 
-When one table needs several files to stay under the [175-line limit](../8-reference/conventions.md),
+When one table needs several files to stay under the [175-line limit](../8-reference/project/conventions.md),
 give it a folder of its own with an `index.ts` that defines the table and imports its parts:
 
 ```text
@@ -93,7 +93,7 @@ export const Request = table("nopspi_Request", {
 - **Every label and description** has English and French: the type requires both.
 - **Choice values** are written 0, 1, 2… and stored as the publisher's option prefix × 10,000 + n
   (897630000, 897630001…). Code reads `RequestType.New.value`, never the long number.
-- Every builder and option: [Schema DSL](../8-reference/schema-dsl.md).
+- Every builder and option: [Schema DSL](../8-reference/schema/schema-dsl.md).
 
 ## 3. Use the names in code
 

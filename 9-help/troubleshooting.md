@@ -36,7 +36,7 @@ When you ask for help, send the **exact message**, the **environment** and **wha
 | Dialog blank or 404 | `pnpm dv:verify` | a web resource is missing or misnamed: names are exactly as `pnpm build` prints them, prefix included |
 | Dialog loads without styles or script | `pnpm dv:verify` | `page.html` references its `page.js` / `page.css` by full name (`<prefix>_<feature>_page.js`); upload all three under exactly the names `pnpm build` prints |
 | Dialog blank, console: `page.html has no #root element.` | F12 console | put `<div id="root">` back in `page.html` |
-| "This page must be opened from a record" | the button | the record is new (save it first), or the button does not pass PrimaryControl: in Command Buttons, **Settings > Copy parameter format from a command...** ([tools](../8-reference/tools.md#command-buttons-deployjson)) |
+| "This page must be opened from a record" | the button | the record is new (save it first), or the button does not pass PrimaryControl: in Command Buttons, **Settings > Copy parameter format from a command...** ([tools](../8-reference/tools/overview.md#command-buttons-deployjson)) |
 | "The Power Apps client API (Xrm) is not available" | | the page was opened outside the app: open it from the app, or use `pnpm dv:preview` |
 | "Save the record first." | | expected on a new record; hide the command on create forms if needed |
 | Where is my `console.log`? | F12 console | it runs in the dialog's iframe: pick that frame in the console's context list |
@@ -98,7 +98,7 @@ When you ask for help, send the **exact message**, the **environment** and **wha
 | A `dv:` command or `test:dataverse` says pac is not signed in | `pac org who` | `pac auth create --environment <url>`, or `pac auth select` the right profile |
 | `dv:q` says entity not found | | `entity name=` is the logical name (lowercase), not the display name |
 | Many "file is being used by another process" errors | | `$env:PAC_CONCURRENCY=2; pnpm test:dataverse` |
-| Browser tests cannot find Edge | | `PW_CHANNEL=chrome`, or `PW_EXECUTABLE_PATH` ([commands](../8-reference/commands.md#environment-variables)) |
+| Browser tests cannot find Edge | | `PW_CHANNEL=chrome`, or `PW_EXECUTABLE_PATH` ([commands](../8-reference/project/commands.md#environment-variables)) |
 
 ## React, the preview and tests
 
@@ -110,8 +110,8 @@ When you ask for help, send the **exact message**, the **environment** and **wha
 | Lint: `Cannot access variable before it is declared` / `Calling setState synchronously within an effect` | `pnpm lint` | a React Compiler rule: compute the value while rendering, or pass it as an argument |
 | A field shows the old value | | keep anything the screen shows in `useState` / `useReducer`, not a variable or a ref |
 | The preview loads twice | | `<StrictMode>` runs effects twice in development; production does not |
-| A filter returns every row in the preview | | the mock only knows `eq` / `ne` ([mock Dataverse](../8-reference/mock-dataverse.md#what-the-fake-supports)); test that in dev |
-| "The mock data has no table ..." | | add the table to the mock data ([format](../8-reference/mock-dataverse.md#data-file-format)), or `pnpm dv:pull <table> --into` |
+| A filter returns every row in the preview | | the mock only knows `eq` / `ne` ([mock Dataverse](../8-reference/web-resources/mock-dataverse.md#what-the-fake-supports)); test that in dev |
+| "The mock data has no table ..." | | add the table to the mock data ([format](../8-reference/web-resources/mock-dataverse.md#data-file-format)), or `pnpm dv:pull <table> --into` |
 | "The preview does not mock ..." | | add the request to `tools/preview/mock-metadata.mjs` |
 | Test warning: `not wrapped in act(...)` | | `await` the user action; wait with `waitFor` or `findBy...` |
 | Test: `Unable to find an accessible element with the role ...` | `screen.debug()` | the control's name differs (a `*` in the label, a hidden field), or find it by `#id` |

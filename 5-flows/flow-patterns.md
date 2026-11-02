@@ -50,10 +50,10 @@ flowchart TB
 | use an action no helper covers | `connector(...)` with its JSON from the designer | [Find the JSON of any action](flow-patterns/05-connectors.md#find-the-json-of-any-action) |
 | call a web service and read its answer | `http` + `parse_json` | [Web services](flow-patterns/06-teams-and-web.md#web-services) |
 | make a run reliable and cheap | filters, concurrency, limits | [Reliability](flow-patterns/04-reliability.md) |
-| retry a call, limit its time, hide its data in the run history | `with_options` | [flowkit options](../8-reference/flowkit-options.md) |
+| retry a call, limit its time, hide its data in the run history | `with_options` | [flowkit options](../8-reference/flows/flowkit-options.md) |
 
-Every helper and its arguments are in the [flowkit reference](../8-reference/flowkit.md); the
-expressions inside actions (`@{formatDateTime(...)}`) are in [Flow expressions](../8-reference/flow-expressions.md).
+Every helper and its arguments are in the [flowkit reference](../8-reference/flows/flowkit.md); the
+expressions inside actions (`@{formatDateTime(...)}`) are in [Flow expressions](../8-reference/flows/flow-expressions.md).
 
 ## In this guide
 

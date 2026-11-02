@@ -49,7 +49,7 @@ flowchart LR
 
 - Use the documentation: [Build a feature](../4-build/build-a-feature.md) and
   [Build a flow](../5-flows/build-a-flow.md) are your step lists, their worked examples show each
-  pattern, and the [reference](../8-reference/feature-files.md) answers details. Copying a pattern
+  pattern, and the [reference](../8-reference/web-resources/feature-files.md) answers details. Copying a pattern
   is the point; pasting the Site visit code does not fit this task.
 - Work in small steps and run `pnpm test` after each one. A red test you just caused is the easiest to fix.
 - Keep `pnpm dev` running and `http://localhost:5600/?feature=callback-request` open: the page

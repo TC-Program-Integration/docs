@@ -25,7 +25,7 @@ parts (extra components, helpers) to `page/` as the feature grows.
 
 `<Name>` is the feature name in PascalCase (`site-visit` → `SiteVisit`). Files a feature does
 not have are skipped by the build. The feature is listed in `features` of
-[`webresources.config.mjs`](configuration.md#webresourcesconfigmjs); its command bar button, if
+[`webresources.config.mjs`](../project/configuration.md#webresourcesconfigmjs); its command bar button, if
 any, in `buttons` there.
 
 ## config.ts
@@ -82,7 +82,7 @@ export function open(primaryControl: Xrm.FormContext): Promise<void> {
 ```
 
 The button runs it as Library `<prefix>_<name>_command.js`, Function `<Name>.open`, parameter
-`PrimaryControl`: the [Command Buttons tool](tools/command-buttons.md) writes that from `buttons`
+`PrimaryControl`: the [Command Buttons tool](../tools/command-buttons.md) writes that from `buttons`
 in `webresources.config.mjs`. Form event handlers are exported the same way.
 
 ## fields.ts

@@ -10,7 +10,7 @@ sidebarTitle: "UI components: data and dialogs"
 
 In the starter, every component of the kit is shown live in the example feature: run `pnpm dev`,
 open Quick task and look at the "Component showcase" tabs (`src/features/quick-task/page/showcase/`).
-A project that deleted `quick-task` ([start a new project](../2-set-up/02-start-a-new-project.md))
+A project that deleted `quick-task` ([start a new project](../../2-set-up/02-start-a-new-project.md))
 no longer has them; read the same folder in the starter.
 
 Like the rest of the kit, these take their data as props and hold no table names: the page loads

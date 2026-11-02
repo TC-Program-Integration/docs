@@ -33,7 +33,7 @@
 
 ## Code
 
-- TypeScript, strict. `pnpm format:check`, `pnpm lint`, `pnpm type-check` and `pnpm test:coverage` must pass (`pnpm check` runs them all); `pnpm build` formats, lints and type-checks first. See [Quality checks](../4-build/test-and-check/02-the-checks.md).
+- TypeScript, strict. `pnpm format:check`, `pnpm lint`, `pnpm type-check` and `pnpm test:coverage` must pass (`pnpm check` runs them all); `pnpm build` formats, lints and type-checks first. See [Quality checks](../../4-build/test-and-check/02-the-checks.md).
 - Python in `flows/` is formatted with Black, linted with Ruff and passes Pyright strict: no `Any`, no `# type: ignore`, `# pyright:` or `# noqa` comments. Flow data is typed with `Json`, `Action` and `Actions` from flowkit. Dependencies are in `pyproject.toml` (managed with uv).
 - No rule is silenced with a comment (`eslint-disable`, `@ts-ignore`). `unknown` and narrowing replace `any`; `catch (error)` reads the message with `errorMessage(error)` from the core.
 - **No file is longer than 175 lines** (code, tests, tools and flows; documentation pages, data files such as JSON, lock files and generated output are not counted). A long file is hard to read, most of all when many functions refer to each other. When a file grows, move a coherent part into its own module and import it: a page of fields into one file per topic, a long test into one file per behaviour with shared helpers beside it. `test/unit/file-length.test.ts` fails the build otherwise. Documentation pages have no limit, but a page that covers two subjects is better as two.
@@ -60,7 +60,7 @@
 - Forms are built from `src/ui` components; the core does not import React.
 - A helper or piece of UI used by two features moves into the core, with a doc comment saying
   when to use it, a unit test, an export from its `index.ts`, and a line in
-  [core API](core-api.md) or [UI components](ui-components.md).
+  [core API](../web-resources/core-api.md) or [UI components](../web-resources/ui-components.md).
 - Markup is JSX and styles are in `.css` files next to the component that uses them: one folder per UI component (`src/ui/<name>/`) or page part. No HTML in strings, no `innerHTML`, no `dangerouslySetInnerHTML`, no `style={...}`, no elements created by hand (`test/unit/conventions.test.ts` checks).
 - Import the core and the UI kit through the aliases `@core` and `@ui` (see [Configuration](configuration.md#import-aliases)), not through `../`. Files inside a folder still import their neighbours with `./`.
 - A feature never imports another feature; a shared piece moves to `src/ui` or `src/core`.
@@ -96,6 +96,6 @@
 ## Access
 
 - Dataverse is reached only through pac, read-only, from the project's tools. The rules:
-  [access and security](../9-help/access-and-security.md).
+  [access and security](../../9-help/access-and-security.md).
 - The XrmToolBox tools push to development and test environments only; production gets changes by
-  solution import ([XrmToolBox tools](tools.md#safety-rules-they-share)).
+  solution import ([XrmToolBox tools](../tools/overview.md#safety-rules-they-share)).

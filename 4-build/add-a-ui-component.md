@@ -3,8 +3,8 @@
 > **For:** when no existing component fits your page. **Result:** a tested component in
 > `src/ui/`, ready to use in any feature.
 
-First check [UI components](../8-reference/ui-components.md) and
-[lists, tables, charts, dialogs and tabs](../8-reference/ui-components-data.md): a field, list,
+First check [UI components](../8-reference/web-resources/ui-components.md) and
+[lists, tables, charts, dialogs and tabs](../8-reference/web-resources/ui-components-data.md): a field, list,
 table, chart, dialog or tab component probably already does it, and most variations are an option
 (`readOnly`, `extraOptions`, `hint`...). Add a component only when the page needs something new
 that more than one page could use. A piece used by one page only belongs in that feature, in
@@ -53,8 +53,8 @@ flowchart LR
    use it in your own page; the example feature is not part of the kit, so whoever reviews the pull
    request adds its showcase panel in the starter.
 4. Test it in `test/unit/ui/<name>.test.tsx`.
-5. Add a row to [UI components](../8-reference/ui-components.md) (fields, layout, saving, feedback) or
-   to [lists, tables, charts, dialogs and tabs](../8-reference/ui-components-data.md).
+5. Add a row to [UI components](../8-reference/web-resources/ui-components.md) (fields, layout, saving, feedback) or
+   to [lists, tables, charts, dialogs and tabs](../8-reference/web-resources/ui-components-data.md).
 6. Check it:
 
 ```powershell
@@ -75,4 +75,4 @@ type-checks, passes the linter and its tests pass. `Notice` is a simpler version
 2. [A field](add-a-ui-component/02-field.md): `PhoneField`, an input with a typed value, and a
    field that loads its options
 
-**Next:** [Build a feature](build-a-feature.md) · [UI components reference](../8-reference/ui-components.md)
+**Next:** [Build a feature](build-a-feature.md) · [UI components reference](../8-reference/web-resources/ui-components.md)

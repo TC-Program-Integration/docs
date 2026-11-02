@@ -156,7 +156,7 @@ Either way, the data then holds (`dv:pull` also writes `idField`, the default `p
 ```
 
 (Keep the existing keys; add these ones. The `systemuser` table already has the preview user.)
-The format is in [mock Dataverse](../../8-reference/mock-dataverse.md#data-file-format). The
+The format is in [mock Dataverse](../../8-reference/web-resources/mock-dataverse.md#data-file-format). The
 preview reloads by itself and shows the page; the log panel lists every write it would make.
 
 ---

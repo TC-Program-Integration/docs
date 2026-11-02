@@ -93,7 +93,7 @@ describe("Notice", () => {
 });
 ```
 
-**6. Document it**: add a row to [UI components](../../8-reference/ui-components.md).
+**6. Document it**: add a row to [UI components](../../8-reference/web-resources/ui-components.md).
 
 ---
 

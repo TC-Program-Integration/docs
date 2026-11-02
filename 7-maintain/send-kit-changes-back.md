@@ -96,5 +96,5 @@ to merge by hand and delete. Nothing is committed: review `git diff` in the star
 | A `kit-push/...` branch you do not want | delete it on GitHub, or `git push <starter url> --delete kit-push/<project folder>` |
 | `kit:push` says the project has no `files` in `kit.json` | this is the starter itself, or a project that never ran `kit:update` once |
 
-The settings are in [configuration](../8-reference/configuration.md#kitjson), the commands in
-[commands](../8-reference/commands.md).
+The settings are in [configuration](../8-reference/project/configuration.md#kitjson), the commands in
+[commands](../8-reference/project/commands.md).

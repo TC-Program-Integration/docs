@@ -118,7 +118,7 @@ pac org who        # who you are and which environment is active
 ```
 
 pac keeps one sign-in profile per environment; switching and removing profiles is in
-[commands](../8-reference/commands.md). pac is the only sign-in the tools use. Other methods are
+[commands](../8-reference/project/commands.md). pac is the only sign-in the tools use. Other methods are
 blocked by the organization on purpose: read [access and security](../9-help/access-and-security.md)
 before trying anything else, and never work around a sign-in or Conditional Access block.
 

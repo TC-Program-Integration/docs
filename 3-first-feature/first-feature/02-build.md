@@ -26,7 +26,7 @@ pnpm dev
 The scaffold is a working "create a task" dialog, already added to `features` in
 `webresources.config.mjs`. Open `http://localhost:5600/?feature=callback-request` and pick a
 **contact** as the source record. Open `src/features/callback-request/` and read each file once
-before changing anything: [feature files](../../8-reference/feature-files.md) says what every file
+before changing anything: [feature files](../../8-reference/web-resources/feature-files.md) says what every file
 is for.
 
 **Check yourself:** which file would you open to change a column name? Which one to change a
@@ -46,7 +46,7 @@ Dataverse names live in `config.ts` and nowhere else.
 3. **Mock data**: the preview and the tests use fake data, not Dataverse. Add your table to **both**
    `tools/preview/mock-data.json` and `test/fixtures/mock-data.json`: its name column, its id column,
    its entity set and no records, and the options of the priority column. The format is in
-   [Mock Dataverse](../../8-reference/mock-dataverse.md#data-file-format).
+   [Mock Dataverse](../../8-reference/web-resources/mock-dataverse.md#data-file-format).
 4. **The button**: in `webresources.config.mjs`, add
    `"callback-request": { label: "Callback request", table: "contact" }` to `buttons`
    ([how](../../4-build/build-a-feature.md#6-describe-the-command-button)). The build turns it into

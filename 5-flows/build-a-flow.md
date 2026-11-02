@@ -52,8 +52,8 @@ How to do that, in order:
   read through a parameter and set after the import.
 - [Choice values](choice-values.md): a choice column's number, looked up at run time by its English label.
 
-Every helper is in the [flowkit reference](../8-reference/flowkit.md); the expression syntax is in
-[Flow expressions](../8-reference/flow-expressions.md).
+Every helper is in the [flowkit reference](../8-reference/flows/flowkit.md); the expression syntax is in
+[Flow expressions](../8-reference/flows/flow-expressions.md).
 
 ## 3. Build and check
 
@@ -75,7 +75,7 @@ It catches the mistakes Power Automate would otherwise show only when it saves o
 | `variables('X'): not initialized` (also Set, Append, Increment, Decrement) | no `init_variable` for it | add `init_variable("X", kind)` at the top |
 | `Initialize variable must be at the top level` | `init_variable` inside a loop, condition or scope | move it to the top-level `chain()` |
 | `items('Loop'): used outside the 'Loop' loop` | the loop's current item is read after the loop | inside the loop, save the value in a variable |
-| `toTitle(): not a Power Automate expression function` | a function that does not exist (names ignore case) | check [Flow expressions](../8-reference/flow-expressions.md) |
+| `toTitle(): not a Power Automate expression function` | a function that does not exist (names ignore case) | check [Flow expressions](../8-reference/flows/flow-expressions.md) |
 | `'(' and ')' do not match`, `'[' and ']' do not match`, `a quote is not closed` | an expression is unbalanced | count the brackets inside the `@{...}` it shows |
 | `null(): there is no null() function` | `null()` in an expression | write the literal `null` |
 | `a Terminate cannot evaluate variables()` | a Terminate message reads a variable | use `terminate_with_list()` |
@@ -86,7 +86,7 @@ When the build succeeds it writes:
 |---|---|
 | `flows/out/<key>/flow.json` | the flow as Power Automate stores it: the file you push. Never edit it; rebuild. |
 | `flows/out/flows.json` | each flow's key, name, workflow id and the solutions it is in, read by `pnpm dv:verify` |
-| `flows/flows.links.json` | the links Flows as Code reads: each built flow's id, name, `file` and description are added or updated; other entries are kept ([format](../8-reference/configuration.md#flowslinksjson)). Written only by the default `flows/out` build. |
+| `flows/flows.links.json` | the links Flows as Code reads: each built flow's id, name, `file` and description are added or updated; other entries are kept ([format](../8-reference/project/configuration.md#flowslinksjson)). Written only by the default `flows/out` build. |
 | `flows/out/<Solution>_<version>.zip` | one solution to import per solution in `flows/solution.json`, one way to create the flow the first time ([first time](../6-ship/deploy/04-flow-and-try.md#4-the-flow)) |
 
 It also prints the connection references each flow needs. The solution's publisher, prefix and

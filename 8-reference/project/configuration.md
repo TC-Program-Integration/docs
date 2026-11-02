@@ -13,7 +13,7 @@
 | [`flows/out/flows.json`](#flowsoutflowsjson) | no: `pnpm flows:build` writes it | each flow's key, name and id, for `dv:verify` |
 | [`flows.links.json`](#flowslinksjson) | through the Flows as Code tool | flow files linked to flows |
 | [`tools/xrmtoolbox/tools.json`](#toolsxrmtoolboxtoolsjson) | when a tool moves | the team's XrmToolBox tools |
-| `tools/preview/mock-data.json` | freely | data the preview serves ([format](mock-dataverse.md#data-file-format)) |
+| `tools/preview/mock-data.json` | freely | data the preview serves ([format](../web-resources/mock-dataverse.md#data-file-format)) |
 | `test/fixtures/mock-data.json` | with the tests | data the unit and browser tests rely on |
 | `tools/queries/*.xml` | add your own | FetchXML for `pnpm dv:q` |
 | `package.json` | name, description, version | scripts, `react`, `react-dom` and `chart.js` (bundled into the pages that use them), dev dependencies; `engines` and `.nvmrc` say Node 24; `.npmrc` turns off pnpm's update notice (the version is pinned) |
@@ -23,7 +23,7 @@
 | `vitest.config.mts`, `vitest.dataverse.config.mts` | rarely | unit tests: jsdom, `test/unit/**/*.test.{ts,tsx}`, `test/setup.ts`, the coverage floor; Dataverse checks: Node, `test/dataverse/**/*.test.ts`, long timeouts |
 | `playwright.config.ts` | rarely | browser tests: Edge, preview on port 5655 with the test fixture, traces on failure |
 | `pyproject.toml`, `uv.lock` | rarely | Python tools and their settings (Black, Ruff, Pyright) |
-| `docs/docs.json`, `docs/vite.config.mts`, `docs/style.css` | adding a page | the docs site: name, logo and menu; how Vite starts Holocron; site-wide styles ([Write the docs](../7-maintain/write-the-docs.md)) |
+| `docs/docs.json`, `docs/vite.config.mts`, `docs/style.css` | adding a page | the docs site: name, logo and menu; how Vite starts Holocron; site-wide styles ([Write the docs](../../7-maintain/write-the-docs.md)) |
 | `pnpm-workspace.yaml`, `.vscode/extensions.json`, `.vscode/settings.json`, `.gitignore` | rarely | esbuild's install script allowed, the docs site's unneeded ones skipped; recommended VS Code extensions; editor settings (format on save, the `.venv` interpreter, `python.languageServer` off so the Pyright extension is the only Python language server); the Highlight extension's rules that colour Power Automate expressions (`@...` and `@{...}`) inside Python strings, so they stand out from the string text; what git leaves out |
 
 ## webresources.config.mjs
@@ -102,7 +102,7 @@ Here `overdue-tasks` is in both solutions: `MyProjectFlows` and `MyProjectRemind
 zip with the flow. Such a flow needs a fixed `workflow_id` in its `flow.py`; build-all stops
 without one. Errors stop the build with the reason: an unknown folder, two solutions with one
 `uniqueName`, an extra solution without `flows`. A prefix that differs from the home's is a
-warning. [One flow in several solutions](../6-ship/deploy.md#one-flow-in-several-solutions)
+warning. [One flow in several solutions](../../6-ship/deploy.md#one-flow-in-several-solutions)
 explains the rules.
 
 ## kit.json
@@ -113,13 +113,13 @@ explains the rules.
 | `exclude` | kit files projects do not take | **your own list**, kept by every update |
 | `packageJson` | the `scripts`, `dependencies` and `devDependencies` a project takes | |
 | `source`, `version`, `files` | | written by `kit:update`: the starter, its version, and a hash of each kit file as installed |
-| `starterRepo`, `starter`, `autopush` | | by hand, kept by every update: the starter's git URL, or a local checkout; `autopush` `"pr"` makes the `pre-push` hook open a pull request, `true` copies into the checkout. [Send kit changes back](../7-maintain/send-kit-changes-back.md), [update the kit](../7-maintain/update-the-kit.md) |
+| `starterRepo`, `starter`, `autopush` | | by hand, kept by every update: the starter's git URL, or a local checkout; `autopush` `"pr"` makes the `pre-push` hook open a pull request, `true` copies into the checkout. [Send kit changes back](../../7-maintain/send-kit-changes-back.md), [update the kit](../../7-maintain/update-the-kit.md) |
 
 ## Files the build writes
 
 ### webresources.links.xml
 
-At the project root. The Web Resources Manager reads it ([Web Resources Manager](tools/web-resources-manager.md)).
+At the project root. The Web Resources Manager reads it ([Web Resources Manager](../tools/web-resources-manager.md)).
 
 ```xml
 <?xml version="1.0"?>
@@ -155,7 +155,7 @@ files and keeps `<Folders>` and any other link added in the tool. Commit it.
 `type` is `js`, `html` or `css`. `function` is `<Global>.<function>`, the global being the feature
 name in PascalCase. `parameters` is always `["PrimaryControl"]`. `icon`, `tooltip` and `sequence`
 are written only when the button sets them in `webresources.config.mjs`. How the tool uses each
-field: [Command Buttons](tools/command-buttons.md).
+field: [Command Buttons](../tools/command-buttons.md).
 
 ### flows/out/flows.json
 
@@ -164,7 +164,7 @@ Written by `pnpm flows:build`: a list of `{ "key", "name", "workflowId" }`, one 
 ### dist/schema.json
 
 Written by `pnpm build` and `pnpm schema:build` when the project has a `schema/` folder
-([Define the schema](../4-build/define-the-schema.md)); read by the Schema as Code XrmToolBox tool.
+([Define the schema](../../4-build/define-the-schema.md)); read by the Schema as Code XrmToolBox tool.
 Never edited by hand. Its format is fixed by `test/fixtures/schema/minimal.json` and `full.json`
 (the tool's checks use the same files, guarded by the hash in `test/fixtures/schema/HASH`).
 
@@ -212,15 +212,15 @@ only when its content changes.
 ```
 
 `file` is relative to the links file. `description` (optional) is given to a flow that
-[Create new flows](tools/flows-as-code.md#create-new-flows) creates from the link. `buildCommand`
+[Create new flows](../tools/flows-as-code.md#create-new-flows) creates from the link. `buildCommand`
 (optional) runs in that folder before each push, once you allow it. See
-[Flows as Code](tools/flows-as-code.md).
+[Flows as Code](../tools/flows-as-code.md).
 
 ## tools/xrmtoolbox/tools.json
 
 `{ "tools": [{ "name": "Flows as Code", "repo": "TC-Program-Integration/FlowsAsCode", "files": ["FlowsAsCode.dll"] }] }`:
 `repo` is the GitHub repository whose latest release holds the tool's zip; `files` are the DLLs the
-installer copies from it. The list: [XrmToolBox tools](tools.md).
+installer copies from it. The list: [XrmToolBox tools](../tools/overview.md).
 
 ## Import aliases
 

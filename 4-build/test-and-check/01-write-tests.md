@@ -26,7 +26,7 @@ Pass "today" as an argument instead of reading the clock, so the test never goes
 ## 2. Test the state and the page on the mock
 
 A page that outgrows `useState` keeps its state changes in a plain function, a reducer in
-`formState.ts` (see [feature files](../../8-reference/feature-files.md)). Test it like the rules in
+`formState.ts` (see [feature files](../../8-reference/web-resources/feature-files.md)). Test it like the rules in
 section 1: call it with a state and an action, and check the new state. It needs no React.
 
 The page is tested by rendering it and using it the way a user does, with
@@ -69,7 +69,7 @@ Habits that keep React tests stable:
 | Do not test React itself (that a state change redraws) | test what the user sees and what is written |
 
 Change the data for one test with `installMockDataverse((data) => { ... })`.
-All helpers: [mock Dataverse](../../8-reference/mock-dataverse.md#unit-test-helpers).
+All helpers: [mock Dataverse](../../8-reference/web-resources/mock-dataverse.md#unit-test-helpers).
 `test/setup.ts` unmounts what a test rendered, so each test starts on an empty page.
 
 ## 3. Test the main path in the browser
@@ -91,7 +91,7 @@ faster. On a failure, `test/.results/` holds a screenshot and a trace
 ## 4. Describe what Dataverse must have
 
 `schema.ts` lists the tables, columns, choices, records and relationships the feature relies on
-([format](../../8-reference/feature-files.md#schemats)). Keep it in step with `config.ts`;
+([format](../../8-reference/web-resources/feature-files.md#schemats)). Keep it in step with `config.ts`;
 `pnpm test:dataverse` checks it against a real environment
 ([read real data](../read-real-data.md#3-keep-checking-with-pnpm-testdataverse)).
 

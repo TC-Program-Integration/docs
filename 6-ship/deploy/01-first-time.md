@@ -36,7 +36,7 @@ flowchart TB
 | Connection reference | the flow's "slot" for a login, so the same flow can use a different login in each environment |
 
 More in [Power Platform for web developers](../../1-learn/01-power-platform.md) and the
-[glossary](../../8-reference/glossary.md).
+[glossary](../../8-reference/project/glossary.md).
 
 ## The steps
 
@@ -58,7 +58,7 @@ Something failed? Find the symptom in [troubleshooting](../../9-help/troubleshoo
 3. `pnpm dv:access` says ok for you, your role and the publisher (found by its prefix). It says NO
    for the solution of `flows/solution.json` until you import the flow in step 4: expected today.
 4. The XrmToolBox tools are installed: `tools\xrmtoolbox\install.cmd`
-   ([XrmToolBox tools](../../8-reference/tools.md)). In XrmToolBox, create a connection to dev.
+   ([XrmToolBox tools](../../8-reference/tools/overview.md)). In XrmToolBox, create a connection to dev.
 5. Ask your mentor **which solution layout your project uses**: one solution for tables, web
    resources and flows, or one for the data and one for the flows (`flows/solution.json`). These
    pages show the second, because that is what `pnpm flows:build` produces; with one solution, you

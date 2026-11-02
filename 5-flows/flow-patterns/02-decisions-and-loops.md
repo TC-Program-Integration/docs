@@ -40,7 +40,7 @@ flow = Flow(
 
 The nesting can also be written with builders: `and_`, `or_`, `not_`, `equals`, `greater`, `less`, `contains`,
 `is_empty`. The condition above is `and_(not_(is_empty("@" + owner)))`
-([flowkit options](../../8-reference/flowkit-options.md#condition-builders)).
+([flowkit options](../../8-reference/flows/flowkit-options.md#condition-builders)).
 
 A condition's `then` and `otherwise` are their own scopes: an action inside one cannot be waited on by an
 action outside, and `chain()` orders each side separately.

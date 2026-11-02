@@ -80,7 +80,7 @@ yours under `exclude`, with [send kit changes back](../7-maintain/send-kit-chang
 | `webresources.config.mjs` | `prefix`: the publisher's prefix |
 | `flows/solution.json` | `uniqueName` and `displayName` (the solution from step 1), `publisher` (the publisher's **unique name**), `publisherDisplayName`, `prefix`, `optionPrefix` |
 
-Every setting is described in [configuration](../8-reference/configuration.md).
+Every setting is described in [configuration](../8-reference/project/configuration.md).
 
 ## 5. First green run, and your access
 

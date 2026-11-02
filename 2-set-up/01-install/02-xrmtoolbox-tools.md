@@ -17,7 +17,7 @@ XrmToolBox's **Plugins folder**; XrmToolBox loads every tool it finds there when
 | Flows as Code | [TC-Program-Integration/FlowsAsCode](https://github.com/TC-Program-Integration/FlowsAsCode/releases/latest) | `FlowsAsCode.dll` |
 | Schema as Code | [TC-Program-Integration/SchemaAsCode](https://github.com/TC-Program-Integration/SchemaAsCode/releases/latest) | `SchemaAsCode.dll` |
 
-The list is `tools/xrmtoolbox/tools.json` ([configuration](../../8-reference/configuration.md#toolsxrmtoolboxtoolsjson)).
+The list is `tools/xrmtoolbox/tools.json` ([configuration](../../8-reference/project/configuration.md#toolsxrmtoolboxtoolsjson)).
 
 ## 1. Find the Plugins folder
 

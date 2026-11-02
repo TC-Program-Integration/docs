@@ -1,7 +1,7 @@
 # Command Buttons
 
 > **Reference.** The Command Buttons XrmToolBox tool, version 1.0.1: it creates or updates the
-> command bar button of each feature from [`dist/deploy.json`](../configuration.md#distdeployjson),
+> command bar button of each feature from [`dist/deploy.json`](../project/configuration.md#distdeployjson),
 > instead of adding it by hand in the command designer. Steps in order:
 > [Web resources and button](../../6-ship/deploy/03-web-resources-and-button.md).
 
@@ -18,7 +18,7 @@ command to see its fields, and what differs, in the bottom pane. Tick the ones t
 and different ones are ticked for you.
 
 Run `pnpm build` first: the buttons come from `buttons` in
-[`webresources.config.mjs`](../configuration.md#webresourcesconfigmjs). Push the web resources
+[`webresources.config.mjs`](../project/configuration.md#webresourcesconfigmjs). Push the web resources
 first too (Web Resources Manager): this tool never uploads web resources.
 
 ## States
@@ -105,5 +105,5 @@ F5 reads `deploy.json` and the environment again; F1 opens the help.
 
 ## Install
 
-`tools\xrmtoolbox\install.cmd` ([XrmToolBox tools](../tools.md#install-or-update-them)); the zip
+`tools\xrmtoolbox\install.cmd` ([XrmToolBox tools](overview.md#install-or-update-them)); the zip
 holds `CommandButtons.dll`.

@@ -97,7 +97,7 @@ From `test/helpers/mockDataverse.ts`:
 | `loadFixture()` | a fresh copy of the fixture data |
 | `Ids` | record ids in the fixture (`user`, `account`, `otherAccount`, `closedAccount`, `contact`) |
 
-To act on a rendered page use React Testing Library (`render`, `screen`, `userEvent`); see [write tests](../4-build/test-and-check/01-write-tests.md#2-test-the-state-and-the-page-on-the-mock).
+To act on a rendered page use React Testing Library (`render`, `screen`, `userEvent`); see [write tests](../../4-build/test-and-check/01-write-tests.md#2-test-the-state-and-the-page-on-the-mock).
 
 ## Browser test helper
 
