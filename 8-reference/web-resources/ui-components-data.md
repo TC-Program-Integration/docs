@@ -77,3 +77,42 @@ const datasets = useMemo(() => [{ label: "Tasks", data: byTeam.data }], [byTeam]
 
 Ids: keep the ids you give `Pagination`, `ConfirmDialog` and `Tabs` (and the ids they derive) unique
 on the page, like field ids.
+
+## Scheduler (`src/ui/scheduler`)
+
+A planning calendar for whole-day entries. It knows nothing about Dataverse: the page owns the
+data, the date and the view, and answers the callbacks. Days are `"YYYY-MM-DD"` strings (the
+Eastern day the business means); the library only ever sees local-midnight dates, converted in
+one tested function (`logic/dates.ts`), so daylight saving and the user's time zone cannot move
+an entry to another day.
+
+| Component | Gives |
+|---|---|
+| `<SchedulerCalendar events resources splitByPerson view date today selectedId onNavigate onViewChange ...>` | The toolbar (Previous, Next, Today, Month/Week/Day) and the calendar (React Big Calendar, MIT, restyled from the `--pp-*` tokens). Controlled: it changes nothing itself. `events` are `SchedulerEvent`; `splitByPerson` gives each person a band in the week and day views. A bar is a real button with an accessible name (title, kind, status, days, Pending, flags). |
+| `onMove(change)`, `onResize(change)` | **Keyboard:** with an editable bar focused, Left and Right move it by a day, Shift with Left or Right changes its last day, Up and Down change the person (when `splitByPerson` shows people); the same callbacks answer, and the focus goes back to the bar when it is drawn again. A line of help under the toolbar says so. **Mouse:** an entry was dragged to other days (and, in a person band, another person), or its first or last day was dragged. `change` is `{ id, start, end, resourceId? }`. Only entries with `editable: true` can be dragged. |
+| `onSelect(id)`, `onCreateRange(range)` | An entry was clicked or activated with Enter or Space; empty days were clicked or dragged over (`{ start, end, resourceId? }`). |
+| `outsideItem`, `onDropFromOutside(drop)` | Set `outsideItem` (`{ title, days }`) while the page drags an item in from outside; the drop is `{ start, end, resourceId? }`. |
+| `<TeamGrid events resources from days today selectedId onNavigate onWeeks ...>` | The person-by-day view: a row for each person, one for the entries nobody has ("Unassigned") and one for entries marked `team: true` such as holidays; a column for each day (`days` is 7, 14 or 28, from the Sunday `from`). Entries are bars in lanes with their travel as bands. Same callbacks as the calendar: `onSelect`, `onMove`, `onResize`, `onCreateRange` (a click on an empty day of a row), `outsideItem` and `onDropFromOutside`. A bar can be dragged to another day or person (a drop on "Unassigned" gives `resourceId: null`; while something is dragged the bars let the drop through to the day under them), its first or last day can be dragged by the edge of the bar (`onResize`, never past the other edge; no edge on a cut side), or it is moved and resized with the arrow keys as in the calendar. Where a bar sits comes from CSS classes, not inline styles. |
+| Week and day views | The all-day rows hold the entries, and under them is the **hour grid**, 0:00 to 24:00. `workHours` (`{ start, end }`, default 7 and 17) is the working day: its slots have the class `pp-sc-work` (the page colour, a line at its start and end, bold hours) and the rest `pp-sc-off` (shaded). The grid opens scrolled one hour before work starts, and a line under the toolbar says what the shading means. In the day view with people each person has a column with the hours. |
+| Motion | `scheduler-motion.css`: bars lift on hover, a pending bar settles in with a glow, a selected bar pulses once, the cell or day a drop lands on lights up, a view fades in when it is switched. Meaning is never carried by movement alone, and with `prefers-reduced-motion` everything is switched off. |
+| `<Toolbar label view onPrevious onNext onToday onViewChange>` | The calendar's own toolbar (Previous, Next, Today, Month/Week/Day) for a page that draws the same entries another way, such as a list. `step(day, view, direction)` and `rangeLabel(day, view, locale)` give the next day and the title. |
+| `<BacklogList label items onDragStart onDragEnd>` | A list of items (`{ id, title, days }`) that can be dragged onto the calendar. Dragging has no keyboard alternative yet: give the page a button that does the same. |
+| `<Legend items>` | What each colour stands for (`{ colour, label }`), plus the pending, travel and flag cues. |
+
+The day helpers the page needs are exported with it: `addDays`, `daysBetween`, `weekday`, `weekStart`, `monthStart`, `monthEnd`, `rangeOf` and `daysLabel`; they work on the day strings and never on a time zone.
+
+A `SchedulerEvent` has `id`, `title`, `start` and `end` (both inclusive), `resourceIds` (empty
+when unassigned), `kind`, `status`, `colour` (`c1` to `c6` or `neutral`), `travelBefore`,
+`travelAfter`, `editable`, `pending` and `flags`. A pending entry is drawn with a dashed edge, a
+pattern and the word "Pending"; travel is a lighter band that says "Travel"; a flag is a "!"
+with the flag names as text. Meaning is never carried by colour alone.
+
+- **Limits.** The week view with people shown separately stacks a band per person (no hour grid: 21 narrow columns would not read); the person-by-day view is `TeamGrid`.
+  An entry with no person is not drawn in a view split by person.
+- **Do not mount it in a hidden tab panel.** The library measures zero height there and shows no
+  "+N more" until the window is resized; `Tabs` keeps its panels mounted but hidden.
+- **Size.** It adds about 256 KB minified (79 KB gzipped) to a page that draws it; other pages
+  are unchanged. `react-big-calendar` is pinned in `package.json`; a new version can change the
+  class names the stylesheet replaces.
+- **Tests.** jsdom has no layout, so the library's mouse selection cannot run: tests stub it, and
+  drag, resize and drop are checked in the browser.

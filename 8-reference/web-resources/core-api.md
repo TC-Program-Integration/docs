@@ -45,6 +45,7 @@ sidebarTitle: "Core API"
 |---|---|
 | `openRecordDialog(formContext, webResource, { title, width, height, extra, unsavedMessage })` | From a command: opens the page as a centered modal for the form's record, `width` x `height` percent of the window (default 60 x 70). Asks to save a new record first (`unsavedMessage`, default "Save the record first."). Resolves when the dialog closes. |
 | `openDialog(webResource, { title, width, height, extra })` | From a command with no record, e.g. a grid button that acts on every row: opens the page as a centered modal with only the `extra` values. The page reads them with `readDialogData()`; `readSourceRecord()` throws there. Resolves when the dialog closes. |
+| `openPage(webResource, extra?)` | Opens the page as a full page in the app's main area, not a dialog (a calendar, a board). The page reads the `extra` values with `readDialogData()`. A page that cannot be opened is reported to the user. |
 | `readSourceRecord()` | In the page: the `{ table, id }` it was opened for. |
 | `readDialogData()` | In the page: all values passed, including `extra`, as `URLSearchParams`. |
 | `openRecord(table, id)` | Opens a record's form (e.g. the one just created). |
@@ -55,6 +56,20 @@ sidebarTitle: "Core API"
 |---|---|
 | `createThen(table, payload, finish)` | Creates a record, runs the follow-up writes in `finish(id)`, and returns the new id. If `finish` fails, deletes the record again and throws; the message says whether the delete worked. |
 | `associate({ table, id }, relationship, { table, ids })` | Links records through an N:N relationship (schema name) in one request. Does nothing for an empty `ids`. |
+| `updateRecord(table, id, payload)` | Changes only the columns in `payload`. Fails when the record does not exist; it never creates one. |
+| `executeBatch(operations)` | Applies many writes in **one Dataverse transaction (all or nothing)** and returns the ids of the created rows, in the order of the `create` operations. See below. |
+
+`executeBatch` takes a list of `BatchOperation`: `{ kind: "create", table, payload }`,
+`{ kind: "update", table, id, payload }` or `{ kind: "delete", table, id }`. They are sent as one
+change set (`Xrm.WebApi.online.executeMultiple`), so if any operation fails nothing is saved and
+the error reads `Nothing was saved: operation 1 (update) failed: <Dataverse message>`. When
+Dataverse does not say which operation failed, the message ends with "(Dataverse did not say
+which operation failed.)". A batch holds at most **1000 operations** (`MAX_BATCH_OPERATIONS`,
+the Dataverse limit); more is refused with an error and is never split, because two requests
+would no longer be atomic. An empty list returns `[]` without a request. Operations run in
+list order. There is no optimistic concurrency (`If-Match`): the native request objects have no
+header support, so a caller that must not overwrite a newer change re-reads the rows and compares
+`modifiedon` first.
 
 ## Errors (`errors.ts`)
 
@@ -88,8 +103,10 @@ there):
 | `WebApi.retrieveMultipleRecords(table, query, maxPageSize)` | `{ entities, nextLink, fetchXmlPagingCookie, moreRecords }`: the paging values come from the FetchXML response (`moreRecords`, the paging cookie) or OData (`nextLink`). |
 | `WebApi.retrieveRecord(table, id, query)` | One record by id. |
 | `WebApi.createRecord(table, body)` | Creates a record and returns `{ id, entityType }`. |
+| `WebApi.updateRecord(table, id, body)` | Updates a record with `PATCH` and `If-Match: *`, so a missing record is an error, not a new record. |
 | `WebApi.deleteRecord(table, id)` | Deletes a record. |
 | `WebApi.online.execute` | The `Associate` operation only, for an N:N link (`$ref`). Any other operation throws. |
+| `WebApi.online.executeMultiple(requests)` | Exactly one change set of create, update and delete requests, sent as one `$batch` request (`standaloneBatch.ts`), so it is all or nothing. Used by `executeBatch`; anything else throws. |
 | `Utility.getEntityMetadata(table)` | The entity set name and the primary id and name columns, cached per page. |
 | `Utility.lookupObjects({ entityTypes })` | Opens the record picker for the first table; resolves with the chosen record, or `[]`. |
 | `Utility.getGlobalContext()` | The context the client was built from. |

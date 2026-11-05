@@ -1,4 +1,4 @@
-﻿# Mock Dataverse
+# Mock Dataverse
 
 > **Reference.** The fake Xrm used by the preview and the tests: its data format, what it
 > supports, and the test helpers built on it.
@@ -62,7 +62,7 @@ source record, as a navigation page is opened from the app's menu.
 
 | Area | Supported |
 |---|---|
-| `Xrm.WebApi` | `retrieveRecord`, `retrieveMultipleRecords`, `createRecord`, `updateRecord`, `deleteRecord`, `online.execute` (Associate, Disassociate) |
+| `Xrm.WebApi` | `retrieveRecord`, `retrieveMultipleRecords`, `createRecord`, `updateRecord`, `deleteRecord`, `online.execute` (Associate, Disassociate), `online.executeMultiple` (create, update and delete requests, as `executeBatch` sends them) |
 | Query options | `$select`, `$top`, `$orderby` (one column, `asc`/`desc`), `$filter` with `eq` / `ne` conditions joined by `and` |
 | FetchXML (`?fetchXml=`) | `attribute`, `order`, `count` / `page` paging (with `moreRecords`), inner and outer `link-entity` joins, nested `and` / `or` filters with `eq`, `ne`, `null`, `not-null` conditions; anything else fails instead of returning unfiltered rows |
 | `Xrm.Utility` | `getGlobalContext` (client URL, org name `local-preview`, user), `getEntityMetadata` |
@@ -71,7 +71,7 @@ source record, as a navigation page is opened from the app's menu.
 
 Not simulated: other filter operators (they are **ignored**, so a filter on `contains` returns
 every row), security roles, plugins, business rules, calculated columns, server validation.
-Writes are never saved: reads keep returning the file's data.
+Writes are not saved by default: reads keep returning the file's data. A test or a demo that must read back what the page wrote sets `window.mockPersist = true` first (the unit test helper and the browser tests do it on the host page), or the data file has `"persist": true` (the host sets it from the file, as `pnpm dev` does for this project); then creates, updates and deletes change the data in memory until the page is reloaded. A `<column>@odata.bind` value becomes the lookup with the target row's name, a created row gets `createdon`, and an update that sets `statecode` is seen by later `statecode eq 0` filters.
 
 ## Recorded writes and alerts
 
@@ -80,7 +80,8 @@ order as `{ type, table, id, payload }`. Alerts and error dialogs are recorded a
 preview shows both in its log panel and terminal.
 
 To make an operation fail, set a failure by operation name (`createRecord`, `updateRecord`,
-`deleteRecord`, `Associate`, ...) with the helpers below.
+`deleteRecord`, `Associate`, ...) with the helpers below. `executeMultiple` fails as a whole (nothing is applied),
+like a Dataverse change set.
 
 ## Unit test helpers
 
