@@ -73,6 +73,7 @@ const datasets = useMemo(() => [{ label: "Tasks", data: byTeam.data }], [byTeam]
 | Component | Gives |
 |---|---|
 | `<ConfirmDialog open title confirmLabel cancelLabel danger onConfirm onCancel id>` | A modal question; the question is the children. The focus starts on Cancel, Tab stays between the two buttons, Escape cancels, and the focus goes back to where it was when the dialog closes. The buttons are `#<id>-confirm` and `#<id>-cancel` (`id` default `confirm`, labels "OK" and "Cancel"). `danger` makes Confirm red. Draws nothing while `open` is false; the page owns `open` and closes the dialog in both callbacks. |
+| `<Modal open title closeLabel wide id onClose>` | A modal for any content (a list, a calendar, a form), where `ConfirmDialog` only asks a question. The children are the body. The focus moves to the first control inside (not the close button), Tab and Shift+Tab stay among the dialog's controls, Escape and a click on the backdrop call `onClose`, and the focus goes back to where it was when it closes. `closeLabel` is the close button's accessible name in the page's language; `wide` gives it more room; `id` (default `modal`) names the title (`<id>-title`). Draws nothing while `open` is false; the page owns `open`. |
 | `<Tabs label tabs initial onChange>` | Tabs; `tabs` are `{ id, label, content }`, `initial` is the id of the tab shown first (default: the first) and `onChange(id)` is called when the user switches. Left/Right (wrapping), Home and End move. Every panel stays mounted (the others are hidden), so what the user typed survives a switch. A tab is `#<tab id>-tab` and its panel `#<tab id>-panel`. |
 
 Ids: keep the ids you give `Pagination`, `ConfirmDialog` and `Tabs` (and the ids they derive) unique
@@ -102,13 +103,14 @@ an entry to another day.
 The day helpers the page needs are exported with it: `addDays`, `daysBetween`, `weekday`, `weekStart`, `monthStart`, `monthEnd`, `rangeOf` and `daysLabel`; they work on the day strings and never on a time zone.
 
 A `SchedulerEvent` has `id`, `title`, `start` and `end` (both inclusive), `resourceIds` (empty
-when unassigned), `kind`, `status`, `colour` (`c1` to `c6` or `neutral`), `travelBefore`,
+when unassigned), `kind`, `status`, `colour` (`c1` to `c6`, an Outlook category colour such as `blue` or `dark-red` from scheduler-outlook.css, or `neutral`), `travelBefore`,
 `travelAfter`, `editable`, `pending` and `flags`. A pending entry is drawn with a dashed edge, a
-pattern and the word "Pending"; travel is a lighter band that says "Travel"; a flag is a "!"
+pattern and the word "Pending"; travel (`travelBefore`, `travelAfter`) is drawn as lighter, dashed-edged ends of the same bar as the visit, saying "Travel", on one track per day so the edges fall on the day lines; `colourTo` (an Outlook colour) makes the bar a gradient from `colour` to `colourTo`; a flag is a "!"
 with the flag names as text. Meaning is never carried by colour alone.
 
 - **Limits.** The week view with people shown separately stacks a band per person (no hour grid: 21 narrow columns would not read); the person-by-day view is `TeamGrid`.
   An entry with no person is not drawn in a view split by person.
+- **A crowded month day.** Where the entries of a day do not fit, the cell shows two buttons instead of "+N more": "Details (N)" opens a short list of only the entries that are not drawn (a click selects one; Escape or Close shuts it), and "Expand" makes the whole month as tall as its entries need, easing the height and showing a "Collapse" button above the grid. The frame is the body, so the border stays around the month while it grows. A printed month is always expanded. Week, day and `TeamGrid` have no such limit: they grow with their entries.
 - **Do not mount it in a hidden tab panel.** The library measures zero height there and shows no
   "+N more" until the window is resized; `Tabs` keeps its panels mounted but hidden.
 - **Size.** It adds about 256 KB minified (79 KB gzipped) to a page that draws it; other pages
