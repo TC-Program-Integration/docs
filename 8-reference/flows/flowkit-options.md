@@ -1,4 +1,4 @@
-﻿# flowkit options
+# flowkit options
 
 > **Reference.** Run options for actions and triggers, and the condition builders, of `flows/lib/flowkit/`.
 > The other helpers: [flowkit](flowkit.md).
@@ -48,7 +48,8 @@ They build the `expression` of `condition(...)` without writing the nesting by h
 | `and_(*terms)` / `or_(*terms)` / `not_(term)` | all / any / the opposite of the terms |
 | `equals(a, b)`, `greater(a, b)`, `greater_or_equals(a, b)`, `less(a, b)`, `less_or_equals(a, b)` | a comparison of two values |
 | `contains(collection, value)` | the text, array or object holds `value` |
-| `is_empty("@expression")` | the expression gives an empty value or null |
+| `is_empty("@expression")` | the expression gives an empty value or null. Only for text, arrays and objects: `empty()` fails the run on a number, a choice or a yes/no |
+| `is_null("@expression")` | the expression has no value (`equals(x, null)`). Use it for a choice, a number or a yes/no, which are not text: `empty()` refuses them |
 
 ```python
 condition(and_(equals("@variables('Status')", "Open"), not_(is_empty("@outputs('Get_owner')?['body/mail']"))), then)
