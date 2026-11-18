@@ -45,17 +45,18 @@
 
 | Key | Meaning |
 |---|---|
-| `user` | the signed-in user (also needs a `systemuser` record to read its columns); an optional `roles` (`[{ "id", "name" }]`) is what `currentUserRoles()` returns, none by default |
-| `previewUsers` | optional: users the preview bar's **Preview as** list can switch to (`[{ "id", "fullname" }]`); switching reopens the page as that user |
+| `user` | the signed-in user (also needs a `systemuser` record to read its columns); `languageId` (optional, default `1033`; `1036` for French) sets `userSettings.languageId`; `roles` (`[{ "id", "name" }]`) is what `currentUserRoles()` returns, none by default |
+| `previewUsers` | optional: users the preview bar's **Preview as** list can switch to (`[{ "id", "fullname", "languageId"? }]`); switching reopens the page as that user |
 | `sources` | tables the preview offers to open a page from |
 | `tables.<t>.nameField` | primary name column |
 | `tables.<t>.idField` | primary key, default `<t>id` |
 | `tables.<t>.entitySet` | entity set name, default `<t>s` |
+| `tables.<t>.displayName` | optional table display name (`"Account"` or `{ "en": "Account", "fr": "Compte" }`), returned in `EntityDefinitions` (`LocalizedLabels` 1033/1036) |
 | `tables.<t>.records` | rows; a lookup is `{ "id": ..., "name": ... }`; a row is active unless `"statecode": 1` |
-| `choices` | `"table.column"` (or `"column"` for every table): `[[value, "Label"], ...]`, or `"boolean"` for Yes/No |
+| `choices` | `"table.column"` (or `"column"` for every table): `[[value, "Label", "French label"?], ...]` (or `[value, { "en": "...", "fr": "..." }]`), or `"boolean"` for Yes/No (`Yes`/`No` and `Oui`/`Non`) |
 | `relationships` | N:N definitions returned by `Metadata.manyToMany`: both logical names and both navigation property names (a definition without them is incomplete) |
 
-In the preview bar, **No source record** (or `&hub=1` in the address) opens the page without a
+In the preview bar, **Language** (`English (1033)` / `Français (1036)`, or `&lang=fr` in the address) switches the simulated Dynamics user's `languageId` and reloads the page, and **No source record** (or `&hub=1` in the address) opens the page without a
 source record, as a navigation page is opened from the app's menu.
 
 ## What the fake supports

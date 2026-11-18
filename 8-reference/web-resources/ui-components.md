@@ -49,9 +49,12 @@ Dataverse-backed ones, the function that loads the options.
 | `checkboxes({ id, label, table, filter })` | one checkbox per active record, e.g. the records to link through an N:N with `associate` | `string[]` of ids | use the array |
 
 **Common options:** `required`, `hint` (help line under the label), `requiredMessage` (replaces
-"Enter \<label>." / "Select \<label>."), `placeholder`, `readOnly`. Selects (`choice`, `yesNo`,
-`lookup`) also take `extraOptions`, options added after the loaded ones, e.g.
-`[{ value: "na", label: "Not applicable" }]`: they count as answered, and `parseYesNo("na")` reads
+"Enter \<label>." / "Select \<label>."), `placeholder`, `readOnly`. `label`, `hint`,
+`requiredMessage` and `placeholder` all accept `Localized` (a plain string, `{ en, fr }` or
+`(language) => string`), and `load(language?)` on `choice`, `yesNo`, `lookup` and `checkboxes`
+accepts `"en"` or `"fr"`. Selects (`choice`, `yesNo`, `lookup`) also take `extraOptions`, options
+added after the loaded ones, e.g.
+`[{ value: "na", label: { en: "Not applicable", fr: "Sans objet" } }]` (`ExtraOption`): they count as answered, and `parseYesNo("na")` reads
 as `null`.
 
 **Ids.** A field's `id` must be unique on the page. Four ids are used by the kit itself: `status`,
@@ -82,6 +85,7 @@ A follow-up field that is only sometimes asked is `required: true` and hidden by
 | Function | Gives |
 |---|---|
 | `checkRequired(specs, values, isVisible, strings?)` | `{ errors, first }`: a message for every visible required field that is empty, and the name of the first. Does not touch the screen; the page puts `errors` in its state. `strings` (default `uiStrings.en`) gives the language of the messages. |
+| `requiredError(spec)` | Returns a `Localized` function `(language) => requiredMessage(spec, uiStrings[language])` so a missing-field error stored in `FormContext` redraws when the user switches language. |
 | `focusField(spec)` | Moves the keyboard focus to the field (the first checkbox of a list). |
 | `isEmpty(spec, value)`, `requiredMessage(spec, strings?)` | The pieces `checkRequired` uses. `strings` (default `uiStrings.en`) gives the language of the message. |
 | `parseNumber`, `parseChoice`, `parseYesNo`, `parseId`, `parseDate` | Text from a control → the typed value, `null` when empty. |
@@ -123,8 +127,8 @@ which picks the page's language in this order: the choice the user made with the
 | `useLanguage()` | `{ language, setLanguage }` from the nearest provider. |
 | `useUiStrings()` | The kit's text in the current language. |
 | `LanguageSwitch` | A button that switches between English and French. It names the other language ("Français" or "English"). |
-| `uiStrings` / `UiStrings` | Every kit text, by language: `uiStrings.en` and `uiStrings.fr`. |
-| `localize(text, language)` / `Localized` | The text for a `Localized` value: a plain string, or a function of the language. |
+| `uiStrings` / `UiStrings` | Every kit text, by language: `uiStrings.en` and `uiStrings.fr` (including `close`, `save`, `cancel`, pagination, validation and picker strings). |
+| `localize(text, language)` / `Localized` / `BilingualText` | The text for a `Localized` value: a plain string, a `{ en, fr }` pair (`BilingualText`), or a function `(language) => string`. |
 
 The kit's components draw their own words (Loading, Select an option, Save, Cancel, Previous and
 Next, the record picker) in the current language. Text a page passes as props (titles, labels,

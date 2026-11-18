@@ -24,7 +24,7 @@ pnpm.
 
 | Command | Does | Needs |
 |---|---|---|
-| `pnpm new:feature <name> ["Title"]` | creates `src/features/<name>/` from `tools/templates/feature/`, its tests `test/unit/<name>.test.tsx` and `test/e2e/<name>.spec.ts`, and adds it to `features` in `webresources.config.mjs`. `<name>` is kebab-case (`site-visit`). It does not add a button. | |
+| `pnpm new:feature <name> ["Title"] ["Titre"]` | creates `src/features/<name>/` from `tools/templates/feature/` (with bilingual `{ en, fr }` titles, labels and validation rules), its tests `test/unit/<name>.test.tsx` and `test/e2e/<name>.spec.ts`, and adds it to `features` in `webresources.config.mjs`. `<name>` is kebab-case (`site-visit`). It does not add a button. | |
 | `pnpm dev` | starts together, in one terminal: the preview (`http://localhost:5600`) and the docs website (`http://localhost:5173`). Each output line is marked with its name. Ctrl+C stops both. Run the unit tests with `pnpm test` (or `pnpm test:watch` in its own terminal). | uv |
 | `pnpm dv:preview [feature] [--port <n>] [--data <file>]` | the preview alone: every feature on mock data, rebuilt and reloaded on save; `/?feature=<name>` switches. Default port 5600, default data `tools/preview/mock-data.json`. Writes are logged, never sent. | |
 | `pnpm watch` | rebuilds `dist/` on save, without format, lint or type checks | |
@@ -103,9 +103,9 @@ read and never handle a password. Rules: [access and security](../../9-help/acce
 |---|---|
 | `<folder or flow.py> ...` | every `flows/<name>/flow.py` except `lib`, `examples`, `out`. The solutions then hold only these flows; a solution left empty is skipped with a message |
 | `--only-solution <uniquename>` | every solution. Builds only that solution's zip, and the `flow.json` files and `flows.json` entries of its flows |
-| `--publisher <uniquename>` / `--publisher-name <text>` | `publisher` / `publisherDisplayName` of the home solution |
+| `--publisher <uniquename>` / `--publisher-name <text>` / `--publisher-name-fr <text>` | `publisher` / `publisherDisplayName` / `publisherDisplayNameFr` of the home solution |
 | `--prefix <prefix>` / `--option-prefix <n>` | `prefix` / `optionPrefix` of the home solution |
-| `--solution <uniquename>` / `--solution-name <text>` | `uniqueName` / `displayName` of the home solution |
+| `--solution <uniquename>` / `--solution-name <text>` / `--solution-name-fr <text>` | `uniqueName` / `displayName` / `displayNameFr` of the home solution |
 | `--version <a.b.c.d>` | `version` of the home solution |
 | `--out <folder>` | `flows/out` |
 

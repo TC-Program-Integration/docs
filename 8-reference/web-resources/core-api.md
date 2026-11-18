@@ -34,8 +34,8 @@ sidebarTitle: "Core API"
 |---|---|
 | `Metadata.entity(table)` | Entity set name, primary id and name columns. |
 | `Metadata.recordPath(table, id)` | The `@odata.bind` value with the real entity set name (`task` → `tasks`, custom plurals...). |
-| `Metadata.columnOptions(table, column)` | Options of a Choice, Status or Yes/No column, in the column's order. |
-| `Metadata.recordOptions(table, filter?)` | Active records as options (id, primary name), sorted by name. |
+| `Metadata.columnOptions(table, column, language?)` | Options of a Choice, Status or Yes/No column, in the column's order, in `language` (`"en"` or `"fr"`, default: `currentUserLanguage()`). Reads `LocalizedLabels` (1033/1036) from one cached metadata request, falling back to `UserLocalizedLabel` and `"No"`/`"Yes"` or `"Non"`/`"Oui"`. |
+| `Metadata.recordOptions(table, filter?, language?)` | Active records as options (id, primary name), sorted by name; unnamed rows use `"(no name)"` or `"(sans nom)"`. |
 | `Metadata.manyToMany(schemaName)` | An N:N relationship's definition, or `null` when it does not exist. It has both tables' logical names and both navigation property names (`Entity1NavigationPropertyName`, `Entity2NavigationPropertyName`), the names used in `$expand`. |
 | `Metadata.clearCache()` | Forgets what was cached (tests, or after a metadata change in the same session). |
 
@@ -43,9 +43,9 @@ sidebarTitle: "Core API"
 
 | Function | Use |
 |---|---|
-| `openRecordDialog(formContext, webResource, { title, width, height, extra, unsavedMessage })` | From a command: opens the page as a centered modal for the form's record, `width` x `height` percent of the window (default 60 x 70). Asks to save a new record first (`unsavedMessage`, default "Save the record first."). Resolves when the dialog closes. |
-| `openDialog(webResource, { title, width, height, extra })` | From a command with no record, e.g. a grid button that acts on every row: opens the page as a centered modal with only the `extra` values. The page reads them with `readDialogData()`; `readSourceRecord()` throws there. Resolves when the dialog closes. |
-| `openPage(webResource, extra?)` | Opens the page as a full page in the app's main area, not a dialog (a calendar, a board). The page reads the `extra` values with `readDialogData()`. A page that cannot be opened is reported to the user. |
+| `openRecordDialog(formContext, webResource, { title, width, height, extra, unsavedMessage })` | From a command: opens the page as a centered modal for the form's record, `width` x `height` percent of the window (default 60 x 70). `title` and `unsavedMessage` accept a plain string or `{ en, fr }` (`DialogText`), resolved with `currentUserLanguage()`. Asks to save a new record first (default `"Save the record first."` / `"Enregistrez d’abord l’enregistrement."`). Resolves when the dialog closes. |
+| `openDialog(webResource, { title, width, height, extra })` | From a command with no record, e.g. a grid button that acts on every row: opens the page as a centered modal with only the `extra` values (`title` accepts `DialogText`). The page reads them with `readDialogData()`; `readSourceRecord()` throws there. Resolves when the dialog closes. |
+| `openPage(webResource, extra?)` | Opens the page as a full page in the app's main area, not a dialog (a calendar, a board). The page reads the `extra` values with `readDialogData()`. A page that cannot be opened is reported to the user in their Dynamics language. |
 | `readSourceRecord()` | In the page: the `{ table, id }` it was opened for. |
 | `readDialogData()` | In the page: all values passed, including `extra`, as `URLSearchParams`. |
 | `openRecord(table, id)` | Opens a record's form (e.g. the one just created). |
@@ -82,6 +82,7 @@ header support, so a caller that must not overwrite a newer change re-reads the 
 | Function | Use |
 |---|---|
 | `currentUser()` | `{ id, name }` from the client context, no request. |
+| `currentUserLanguageId()` / `currentUserLanguage()` | The signed-in user's Dynamics language code (`1033` default, `1036` for French; constants `ENGLISH_LANGUAGE_ID` and `FRENCH_LANGUAGE_ID`) and `"en"` or `"fr"` (`UserLanguage`), from the client context. |
 | `currentUserRoles()` | `[{ id, name }]`: the user's security roles (including the roles from their teams), from the client context, no request. |
 | `currentUserHasRole(...names)` | `true` when the user has at least one of the named roles (case-insensitive). Use it in a command's enable rule to show a button to some roles only; the table's privileges stay the real access control. |
 | `currentUserRecord(columns)` | Columns of the user's own systemuser record, or `{}` when they cannot read it. |

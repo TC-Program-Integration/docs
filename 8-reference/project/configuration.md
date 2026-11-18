@@ -50,10 +50,12 @@ Fields of a button (types in `webresources.config.d.mts`):
 
 | Field | Required | Meaning |
 |---|---|---|
-| `label` | yes | the button text |
+| `label` | yes | the English button text |
+| `labelFr` | no | the French button text (LCID 1036), carried into `dist/deploy.json` |
 | `table` | yes | logical name of the table whose command bar gets the button |
 | `location` | no | `"form"` (default) or `"grid"` (the main grid) |
 | `function` | no | the function exported by the feature's `command/index.ts`; default `"open"` |
+| `icon`, `tooltip`, `tooltipFr`, `sequence` | no | font icon, English/French tooltip description, and order in the bar |
 
 `pnpm build` checks each button: the feature is in `features`, `command.js` exports the function,
 `label` and `table` are set. A wrong entry is printed as a warning and left out of
@@ -71,7 +73,9 @@ only: `<prefix>_<feature>_<function>_<table>` (`pidev_quicktask_open_account`).
 ```
 
 `publisher` is the publisher's **unique** name (letters, digits, `_`; find it with
-`pnpm dv:q tools/queries/publishers.xml`). `uniqueName` follows the same rule. `prefix` is 2 to 8
+`pnpm dv:q tools/queries/publishers.xml`). `uniqueName` follows the same rule. `displayNameFr` and
+`publisherDisplayNameFr` (both optional) write French (`languagecode="1036"`) `<LocalizedName>`
+entries into `solution.xml` alongside English (`1033`). `prefix` is 2 to 8
 lowercase letters or digits. `version` is `a.b.c.d`; raise it before each import to production.
 `flows/build-all.py` reads every key; its [options](commands.md#flows) override them.
 

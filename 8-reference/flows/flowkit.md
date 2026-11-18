@@ -13,12 +13,13 @@ take `after` set the action's `runAfter`; leave it out inside `chain()`.
 ## Flow
 
 ```python
-Flow(name, key, trigger, actions, description="", workflow_id=None, connection_label=None)
+Flow(name, key, trigger, actions, name_fr=None, description="", workflow_id=None, connection_label=None)
 ```
 
 | Field | Meaning |
 |---|---|
-| `name` | display name in Power Automate |
+| `name` | display name in Power Automate (LCID 1033) |
+| `name_fr` | optional French display name (LCID 1036) written to `<LocalizedNames>` in `customizations.xml` and `nameFr` in `flows/out/flows.json` |
 | `key` | PascalCase id; connection references are named `<prefix>_<key><Connector>` |
 | `trigger` | one trigger helper's result |
 | `actions` | usually `chain({...})` |
@@ -162,16 +163,17 @@ there. How to fix each problem: [Build a flow](../../5-flows/build-a-flow.md#3-b
 ## Environment variables
 
 ```python
-EnvironmentVariable(schema_name, display_name, type="String", default=None, description="")
+EnvironmentVariable(schema_name, display_name, type="String", default=None, description="",
+                    display_name_fr=None, description_fr=None)
 ```
 
 | Field or attribute | Meaning |
 |---|---|
 | `schema_name` | `<prefix>_<name>` in a solution (the prefix is the publisher's, in `flows/solution.json`); letters, digits and `_` |
-| `display_name` | the name in Power Automate; no single quote |
+| `display_name` / `display_name_fr` | the English (1033) name in Power Automate (no single quote), and optional French (1036) `<label>` in the solution |
 | `type` | `"String"` (default), `"Number"`, `"Boolean"`, `"JSON"`: the Dataverse type codes 100000000 to 100000003 |
 | `default` | the development value: `str`, `int`, `bool`, or the JSON text for `"JSON"`; must match `type`. `None`: no default |
-| `description` | shown in the flow's parameter metadata and in the solution |
+| `description` / `description_fr` | shown in the flow's parameter metadata and in the solution (1033 and optional 1036 `<label>`) |
 | `.parameter_name` | `<display_name> (<schema_name>)`, the parameter's name |
 | `.expression` | `@parameters('<parameter_name>')`: a whole input |
 | `.interpolated` | `@{parameters('<parameter_name>')}`: inside a text |
@@ -206,7 +208,8 @@ Table and column are logical names (letters, digits and `_`); `name` is a letter
 
 ```python
 Solution(unique_name, display_name, publisher, prefix, option_prefix,
-         publisher_display_name=None, version="1.0.0.0", flows=[...]).build(out_dir)
+         display_name_fr=None, publisher_display_name=None, publisher_display_name_fr=None,
+         version="1.0.0.0", flows=[...]).build(out_dir)
 ```
 
 `build` validates the names (publisher and solution unique names of letters, digits and `_`,
