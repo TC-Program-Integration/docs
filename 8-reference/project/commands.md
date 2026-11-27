@@ -69,7 +69,7 @@ checks are explained in [The checks](../../4-build/test-and-check/02-the-checks.
 
 | Command | Does | Needs |
 |---|---|---|
-| `pnpm build` | runs `format`, `lint`, `type-check` (an error stops it), then builds every feature of `webresources.config.mjs` into `dist/<prefix>_<feature>_` (`command.js`, `page.js`, `page.html`, `page.css`). Prints each web resource name and each command library's `Library` and `Function`. Ends by writing [`webresources.links.xml` and `dist/deploy.json`](configuration.md#files-the-build-writes) and warning about any wrong `buttons` entry. | |
+| `pnpm build` | runs `format`, `lint`, `type-check` (an error stops it), then builds every feature of `webresources.config.mjs` into `dist/<prefix>_<feature>_` (`command.js`, `page.js`, `page.html`, `page.css`, and each image of the feature's `images/` folder under its own name). Prints each web resource name and each command library's `Library` and `Function`. Ends by writing [`webresources.links.xml` and `dist/deploy.json`](configuration.md#files-the-build-writes) and warning about any wrong `buttons` entry. | |
 | `pnpm build --minify` | the same with minified scripts: `page.js` drops from about 730 KB to about 240 KB for the example feature. Stack traces are harder to read. | |
 
 ## Dataverse (pac, read-only)

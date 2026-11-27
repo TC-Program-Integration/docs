@@ -15,13 +15,15 @@
 | `page/page.css` | `<prefix>_<name>_page.css`, after the CSS of the components the page uses | optional |
 | `page/*.ts(x)` | (imported by the page) | as the page grows: a `useThing.ts` hook, `load.ts`, `formState.ts`, `testData.ts`, components in sub-folders |
 | `logic/rules.ts` | (imported by the page) | if there is a page |
+| `images/<file>` | `<prefix>_<name>_<file>`, copied as it is (`.svg`, `.png`, `.gif`, `.jpg`, `.jpeg`, `.ico`) | optional: a command button's icon, a logo |
 | `test/unit/<name>.test.tsx` | (not bundled) | yes: the scaffold writes it |
 | `test/e2e/<name>.spec.ts` | (not bundled) | yes: the scaffold writes it |
 
 Folders are only for source: each web resource is a single flat file named
 `<prefix>_<name>_page.html`, `<prefix>_<name>_page.js`, `<prefix>_<name>_page.css` and
-`<prefix>_<name>_command.js`. Add more plain-logic files to `logic/` and more page
-parts (extra components, helpers) to `page/` as the feature grows.
+`<prefix>_<name>_command.js`, plus one per image (`images/icon.svg` becomes
+`<prefix>_<name>_icon.svg`, listed in `webresources.links.xml` and `dist/deploy.json` like the others). Add more
+plain-logic files to `logic/` and more page parts (extra components, helpers) to `page/` as the feature grows.
 
 `<Name>` is the feature name in PascalCase (`site-visit` → `SiteVisit`). Files a feature does
 not have are skipped by the build. The feature is listed in `features` of
